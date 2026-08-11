@@ -1,0 +1,371 @@
+\section{Mathematical model}
+\label{sec:model}
+
+We describe the model in normalized form. The four-body central-configuration
+formulation of Section~\ref{subsec:cc} is due to \cite{shoaib2023}
+and is \emph{not} claimed as a result of the present paper; we restate it only
+to fix notation and because it defines the parameter family along which the
+restricted problem is posed. The restricted fifth-body model follows in
+Sections~\ref{subsec:potential}--\ref{subsec:jacobi}.
+
+\subsection{The primary central configuration}
+\label{subsec:cc}
+
+Following the normalization of Shoaib et al.\ \cite{shoaib2023}, we use the
+translation, rotation, reflection, and scaling invariances of the planar
+central-configuration problem to place the four primaries at
+\begin{equation}
+\mathbf r_0=(0,b),\qquad
+\mathbf r_1=(-1,0),\qquad
+\mathbf r_2=(0,a),\qquad
+\mathbf r_3=(c_1,c_2),
+\label{eq:primary_positions}
+\end{equation}
+with
+\[
+a>0,\qquad b<a,\qquad b\neq \pm a.
+\]
+The choice $\mathbf r_1=(-1,0)$ fixes the length scale, while
+$\mathbf r_0$ and $\mathbf r_2$ lie on the $y$-axis and
+$\mathbf r_3=(c_1,c_2)$ remains free in the plane. The geometry is therefore
+described by the parameter vector
+\[
+\mathbf p=(a,b,c_1,c_2).
+\]
+
+For compactness, define
+\begin{equation}
+\begin{aligned}
+\sigma &= (1+a^2)^{3/2},
+&
+\varsigma &= (1+b^2)^{3/2},
+&
+\tau &= (a-b)^3,
+\\
+G &= \left[c_1^2+(c_2-a)^2\right]^{3/2},
+&
+T &= \left[c_1^2+(c_2-b)^2\right]^{3/2},
+&
+M &= \left[(c_1+1)^2+c_2^2\right]^{3/2}.
+\end{aligned}
+\label{eq:auxiliary_distances}
+\end{equation}
+These quantities are the cubes of the six mutual distances between the
+primaries.
+
+Let
+\[
+\rho_0=\frac{m_0}{m_3},\qquad
+\rho_1=\frac{m_1}{m_3},\qquad
+\rho_2=\frac{m_2}{m_3}
+\]
+denote the primary mass ratios. For the nondegenerate geometries considered
+here, the coplanar four-body central-configuration condition of
+\cite{shoaib2023} reduces to the scalar equation
+\begin{equation}
+\begin{aligned}
+\psi(a,b,c_1,c_2)
+={}&
+\tau(\sigma-\varsigma)M
++T\left[(\tau-\sigma)M+\sigma(\varsigma-\tau)\right]
+\\
+&+
+G\left[(\sigma-\varsigma)T+(\varsigma-\tau)M
++\varsigma(\tau-\sigma)\right]
+=0,
+\end{aligned}
+\label{eq:cc_constraint}
+\end{equation}
+and the corresponding mass ratios are
+\begin{equation}
+\rho_0=
+\frac{(c_2-a-ac_1)(M-G)\varsigma\tau}
+     {(a-b)(\varsigma-\tau)MG},
+\qquad
+\rho_1=
+\frac{c_1(G-T)\sigma\varsigma}
+     {(\sigma-\varsigma)GT},
+\qquad
+\rho_2=
+\frac{(c_2-b-bc_1)(M-T)\sigma\tau}
+     {(a-b)(\tau-\sigma)MT}.
+\label{eq:mass_ratios}
+\end{equation}
+Equations~\eqref{eq:cc_constraint}--\eqref{eq:mass_ratios} are the
+four-body central-configuration result of \cite{shoaib2023}; they are
+restated here only to define the family of primary configurations used in
+the restricted problem.
+
+Not every solution of $\psi=0$ corresponds to a positive-mass,
+nondegenerate configuration. We therefore define the admissible set
+\begin{equation}
+\mathcal A=
+\left\{
+\mathbf p:
+\psi(\mathbf p)=0,\;
+\rho_0(\mathbf p)>0,\;
+\rho_1(\mathbf p)>0,\;
+\rho_2(\mathbf p)>0
+\right\},
+\label{eq:admissible_set}
+\end{equation}
+subject additionally to non-vanishing denominators in
+\eqref{eq:mass_ratios} and the exclusion of primary collisions. Since only
+mass ratios enter the central-configuration construction, the overall mass
+scale remains arbitrary. We fix this scale by setting $m_3=1$, so that the
+normalized primary masses used throughout the restricted problem are
+\[
+(m_0,m_1,m_2,m_3)=(\rho_0,\rho_1,\rho_2,1).
+\]
+
+\subsection{The restricted fifth body: potential, equilibria, and linear stability}
+\label{subsec:potential}
+
+For each admissible primary configuration
+$\mathbf p\in\mathcal A$, the four primary masses and positions are fixed in
+the uniformly rotating frame, and the fifth body is taken to be
+infinitesimal: it moves in their gravitational field but does not perturb
+the primary central configuration. Let $(x,y)$ denote its rotating-frame
+coordinates, and define the distances to the four primaries by
+\begin{equation}
+\begin{aligned}
+r_{40} &= \sqrt{x^2+(y-b)^2},
+&
+r_{41} &= \sqrt{(x+1)^2+y^2},
+\\
+r_{42} &= \sqrt{x^2+(y-a)^2},
+&
+r_{43} &= \sqrt{(x-c_1)^2+(y-c_2)^2}.
+\end{aligned}
+\label{eq:test_particle_distances}
+\end{equation}
+
+With the rotation rate normalized to unity, the effective potential is
+\begin{equation}
+\Omega(x,y)
+=
+\frac{1}{2}(x^2+y^2)
++
+\sum_{i=0}^{3}\frac{m_i}{r_{4i}},
+\label{eq:effective_potential}
+\end{equation}
+where
+\[
+(m_0,m_1,m_2,m_3)
+=
+(\rho_0,\rho_1,\rho_2,1).
+\]
+The equations of motion are
+\begin{equation}
+\ddot{x}-2\dot{y}=\Omega_x,
+\qquad
+\ddot{y}+2\dot{x}=\Omega_y,
+\label{eq:equations_of_motion}
+\end{equation}
+with
+\begin{equation}
+\Omega_x
+=
+x-\sum_{i=0}^{3}m_i\frac{x-x_i}{r_{4i}^3},
+\qquad
+\Omega_y
+=
+y-\sum_{i=0}^{3}m_i\frac{y-y_i}{r_{4i}^3},
+\label{eq:potential_gradient}
+\end{equation}
+where $(x_i,y_i)$ are the primary positions defined in
+\eqref{eq:primary_positions}.
+
+The relative equilibria, or libration points, of the infinitesimal body are
+the stationary solutions of the rotating-frame equations,
+\begin{equation}
+\Omega_x(x,y)=0,
+\qquad
+\Omega_y(x,y)=0.
+\label{eq:equilibrium_equations}
+\end{equation}
+Unlike the five Lagrange points of the CR3BP, the number and locations of
+these equilibria depend on the primary configuration
+$\mathbf p\in\mathcal A$. Their variation along the admissible
+central-configuration set is the equilibrium bifurcation problem studied in
+Section~\ref{sec:results}.
+
+To analyse both the local root structure of
+\eqref{eq:equilibrium_equations} and the linear dynamics near an
+equilibrium, we use the Hessian of $\Omega$. Writing
+\[
+\Delta x_i=x-x_i,
+\qquad
+\Delta y_i=y-y_i,
+\]
+its entries are
+\begin{equation}
+\begin{aligned}
+\Omega_{xx}
+&=
+1-\sum_{i=0}^{3}m_i
+\left(
+\frac{1}{r_{4i}^3}
+-
+\frac{3\Delta x_i^2}{r_{4i}^5}
+\right),
+\\
+\Omega_{yy}
+&=
+1-\sum_{i=0}^{3}m_i
+\left(
+\frac{1}{r_{4i}^3}
+-
+\frac{3\Delta y_i^2}{r_{4i}^5}
+\right),
+\\
+\Omega_{xy}
+&=
+3\sum_{i=0}^{3}m_i
+\frac{\Delta x_i\Delta y_i}{r_{4i}^5}.
+\end{aligned}
+\label{eq:hessian_entries}
+\end{equation}
+Thus
+\begin{equation}
+H_\Omega
+=
+\begin{pmatrix}
+\Omega_{xx} & \Omega_{xy}\\
+\Omega_{xy} & \Omega_{yy}
+\end{pmatrix}
+\label{eq:hessian}
+\end{equation}
+is simultaneously the Hessian of the effective potential and the Jacobian
+of the equilibrium map
+\[
+F(x,y)=
+\begin{pmatrix}
+\Omega_x\\
+\Omega_y
+\end{pmatrix}.
+\]
+Consequently, $\det H_\Omega=0$ marks a degeneracy of the equilibrium
+equations and plays a central role in the fold analysis of Sections~\ref{sec:methods}--\ref{sec:results}.
+
+Let $(x_e,y_e)$ be an equilibrium. Linearizing
+\eqref{eq:equations_of_motion} about $(x_e,y_e)$ gives
+\begin{equation}
+\dot{\mathbf X}=A\mathbf X,
+\qquad
+\mathbf X=
+\begin{pmatrix}
+X\\Y\\\dot X\\\dot Y
+\end{pmatrix},
+\end{equation}
+with
+\begin{equation}
+A=
+\begin{pmatrix}
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\Omega_{xx} & \Omega_{xy} & 0 & 2\\
+\Omega_{xy} & \Omega_{yy} & -2 & 0
+\end{pmatrix}_{(x_e,y_e)} .
+\label{eq:variational_matrix}
+\end{equation}
+Its characteristic polynomial is
+\begin{equation}
+\lambda^4
++
+\left(4-\Omega_{xx}-\Omega_{yy}\right)\lambda^2
++
+\left(\Omega_{xx}\Omega_{yy}-\Omega_{xy}^2\right)
+=0.
+\label{eq:characteristic_polynomial}
+\end{equation}
+Because \eqref{eq:characteristic_polynomial} is an even polynomial with real
+coefficients, the spectrum is symmetric under both
+$\lambda\mapsto-\lambda$ and complex conjugation. Hence the four
+eigenvalues occur as
+\[
+\{\lambda,-\lambda,\bar{\lambda},-\bar{\lambda}\},
+\]
+with the usual reductions when some members coincide.
+
+An equilibrium is spectrally unstable whenever at least one eigenvalue has
+positive real part. It is spectrally stable when the spectrum consists of
+two purely imaginary conjugate pairs,
+\[
+\lambda=\pm i\omega_1,
+\qquad
+\lambda=\pm i\omega_2,
+\qquad
+\omega_1,\omega_2>0.
+\]
+We use ``spectrally stable'' and ``linearly stable'' in this restricted
+sense throughout. This condition concerns only the linearized dynamics and
+does not by itself imply nonlinear or KAM stability. The centre frequencies
+$\omega_1$ and $\omega_2$ identified here provide the linear modes from
+which the periodic-orbit families of Section~\ref{sec:periodic} are initialized.
+
+
+\subsection{Jacobi integral and Hill regions}
+\label{subsec:jacobi}
+
+The rotating-frame equations \eqref{eq:equations_of_motion} admit the
+Jacobi integral. Multiplying the first equation by $\dot{x}$ and the second
+by $\dot{y}$, and then adding, gives
+\[
+\dot{x}\ddot{x}+\dot{y}\ddot{y}
+=
+\Omega_x\dot{x}+\Omega_y\dot{y},
+\]
+because the Coriolis terms cancel identically. Hence
+\[
+\frac{d}{dt}
+\left[
+\frac{1}{2}\left(\dot{x}^2+\dot{y}^2\right)-\Omega(x,y)
+\right]
+=0.
+\]
+We therefore adopt the standard Jacobi constant
+\begin{equation}
+C_J
+=
+2\Omega(x,y)
+-
+\left(\dot{x}^2+\dot{y}^2\right),
+\label{eq:jacobi_integral}
+\end{equation}
+which is constant along every trajectory.
+
+Since the kinetic term is non-negative, motion at a prescribed value of
+$C_J$ is possible only where
+\begin{equation}
+2\Omega(x,y)\geq C_J.
+\label{eq:hill_condition}
+\end{equation}
+The corresponding Hill region is
+\begin{equation}
+\mathcal H(C_J)
+=
+\left\{
+(x,y):2\Omega(x,y)\geq C_J
+\right\},
+\label{eq:hill_region}
+\end{equation}
+and its boundary,
+\begin{equation}
+2\Omega(x,y)=C_J,
+\label{eq:zero_velocity_curve}
+\end{equation}
+is the zero-velocity curve.
+
+At an equilibrium $(x_e,y_e)$ the rotating-frame velocity vanishes, so its
+critical Jacobi value is
+\begin{equation}
+C_{J,e}
+=
+2\Omega(x_e,y_e).
+\label{eq:critical_jacobi}
+\end{equation}
+These equilibrium values provide the critical levels at which the geometry
+of the regular Hill region can change through the opening or closing of
+necks. Their relation to the equilibrium branches and to a representative
+Hill-region topology change is examined in Section~\ref{sec:hill}.

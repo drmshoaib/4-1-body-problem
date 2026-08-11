@@ -1,0 +1,20 @@
+# Minimal source release: track LaTeX manuscript sources, their figures,
+# and the Python code. Ignore everything else.
+# Ignore everything by default...
+*
+# ...but still descend into subdirectories...
+!*/
+# ...and keep these source types:
+!*.tex
+!*.bib
+!*.py
+!.gitignore
+# ...plus the manuscript figures (they accompany the LaTeX):
+!paper/figures/*.pdf
+!paper/figures/*.png
+# ...plus the compiled manuscript and supplement PDFs:
+!paper/main.pdf
+!paper/supplement.pdf
+
+# (Everything else stays local: results CSVs, docs, working notes and PDFs,
+#  build intermediates, and caches.)

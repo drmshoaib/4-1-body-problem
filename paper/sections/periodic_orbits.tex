@@ -1,0 +1,446 @@
+\section{Periodic-orbit families}
+\label{sec:periodic}
+
+The centre modes identified in Section~\ref{subsec:centrefreq} provide
+local seeds for Lyapunov families of periodic orbits. We compute ten such
+families, chosen to sample doubly-elliptic equilibria, saddle$\times$centre
+equilibria, and selected low-order near-commensurability regions. This
+section describes the shooting formulation and continuation procedure,
+classifies the corrected orbits by their Floquet multipliers, and examines
+the approach of two families to the period-doubling threshold. The computed
+families are summarized in Table~\ref{tab:periodic_families}.
+
+\input{tables/tab_families}
+
+
+\subsection{Shooting formulation and linear seeding}
+\label{subsec:periodic_shooting}
+
+Write the rotating-frame state as
+\[
+\mathbf u=(x,y,\dot{x},\dot{y})^T
+\]
+and denote by $\phi_T(\mathbf u_0)$ the time-$T$ flow of
+\eqref{eq:equations_of_motion}. A periodic orbit satisfies
+\begin{equation}
+\phi_T(\mathbf u_0)-\mathbf u_0=\mathbf 0.
+\label{eq:periodicity_residual}
+\end{equation}
+
+Let
+\[
+L_j=(x^\ast,y^\ast,0,0)^T
+\]
+be a parent equilibrium with a simple centre eigenvalue
+$+i\omega_k$ and corresponding complex eigenvector $\mathbf w_k$ of the
+variational matrix \eqref{eq:variational_matrix}. The small-amplitude
+linear motion provides the initial approximation
+\[
+\mathbf u(t)
+=
+L_j+
+\varepsilon
+\operatorname{Re}
+\left(
+e^{i\omega_k t}\mathbf w_k
+\right).
+\]
+Using the real part of the selected eigenvector as the initial direction,
+we take
+\begin{equation}
+\mathbf u_0^{(0)}
+=
+L_j+\varepsilon\widehat{\mathbf e}_k,
+\qquad
+\widehat{\mathbf e}_k
+=
+\frac{\operatorname{Re}\mathbf w_k}
+{\|\operatorname{Re}\mathbf w_k\|},
+\qquad
+T_0=\frac{2\pi}{\omega_k}.
+\label{eq:linear_periodic_seed}
+\end{equation}
+At a doubly-elliptic equilibrium the two simple centre modes are seeded
+separately, producing two local Lyapunov families.
+
+The periodicity equations alone do not isolate a unique member of a
+one-parameter family because the autonomous flow also admits arbitrary
+time translation along a periodic orbit. We therefore supplement the four
+periodicity equations with a phase condition and an amplitude condition,
+\begin{equation}
+\widehat{\mathbf e}_k^T f(\mathbf u_0)=0,
+\qquad
+\widehat{\mathbf e}_k^T(\mathbf u_0-L_j)=a,
+\label{eq:phase_amplitude_conditions}
+\end{equation}
+where $f$ denotes the rotating-frame vector field and $a$ is the prescribed
+continuation amplitude.
+
+The complete correction residual is consequently
+\begin{equation}
+\mathcal R(\mathbf u_0,T)=
+\begin{pmatrix}
+\phi_T(\mathbf u_0)-\mathbf u_0\\
+\widehat{\mathbf e}_k^T f(\mathbf u_0)\\
+\widehat{\mathbf e}_k^T(\mathbf u_0-L_j)-a
+\end{pmatrix}.
+\label{eq:shooting_residual}
+\end{equation}
+The state-transition matrix $\Phi(t)$ is integrated simultaneously from
+\[
+\dot{\Phi}=A(\mathbf u(t))\Phi,
+\qquad
+\Phi(0)=I,
+\]
+and the monodromy matrix is
+\[
+M=\Phi(T).
+\]
+The derivatives of the periodicity residual are
+\[
+D_{\mathbf u_0}
+\bigl[\phi_T(\mathbf u_0)-\mathbf u_0\bigr]
+=
+M-I,
+\qquad
+D_T
+\bigl[\phi_T(\mathbf u_0)-\mathbf u_0\bigr]
+=
+f(\phi_T(\mathbf u_0)).
+\]
+Thus the $6\times5$ correction Jacobian is
+\begin{equation}
+J=
+\begin{pmatrix}
+M-I & f(\phi_T(\mathbf u_0))\\
+\widehat{\mathbf e}_k^T A(\mathbf u_0) & 0\\
+\widehat{\mathbf e}_k^T & 0
+\end{pmatrix},
+\label{eq:shooting_jacobian}
+\end{equation}
+and each Newton correction is obtained from the least-squares problem
+\[
+\delta X
+=
+\arg\min_{\delta}
+\|J\delta+\mathcal R\|_2.
+\]
+The phase and amplitude constraints remove the two neutral directions
+associated with time translation and displacement along the local
+one-parameter family. The resulting overdetermined formulation retains all
+four periodicity equations symmetrically rather than eliminating a state
+coordinate through the Jacobi integral.
+
+
+\subsection{Continuation and numerical validation}
+\label{subsec:periodic_continuation}
+
+The state, period, and state-transition matrix are integrated with DOP853
+using
+\[
+\mathrm{rtol}=\mathrm{atol}=10^{-12}.
+\]
+Newton corrections are capped according to
+\[
+\|\delta\mathbf u_0\|\leq0.5,
+\qquad
+|\delta T|\leq0.5T,
+\]
+with $T>0$ enforced throughout.
+
+A corrected orbit is accepted only when
+\begin{equation}
+\|\phi_T(\mathbf u_0)-\mathbf u_0\|_2<10^{-10},
+\qquad
+|\widehat{\mathbf e}_k^T f(\mathbf u_0)|<10^{-10},
+\qquad
+|\widehat{\mathbf e}_k^T(\mathbf u_0-L_j)-a|<10^{-12}.
+\label{eq:periodic_acceptance}
+\end{equation}
+Across the 198 accepted periodic solutions the observed maxima are
+\[
+\|\phi_T(\mathbf u_0)-\mathbf u_0\|_2
+\leq9.0\times10^{-11},
+\]
+\[
+|\widehat{\mathbf e}_k^T f(\mathbf u_0)|
+\leq4.7\times10^{-12},
+\qquad
+|\widehat{\mathbf e}_k^T(\mathbf u_0-L_j)-a|
+\leq3.9\times10^{-16}.
+\]
+The periodicity residual therefore provides a direct numerical certificate
+that every orbit reported below closes to the stated tolerance.
+
+We continue each family using the natural amplitude parameter
+\[
+a=
+\widehat{\mathbf e}_k^T(\mathbf u_0-L_j),
+\]
+with the prescribed amplitudes forming the geometric sequence
+\begin{equation}
+a_0=2\times10^{-3},
+\qquad
+a_{n+1}=1.35\,a_n.
+\label{eq:amplitude_sequence}
+\end{equation}
+Each new member is predicted from its predecessor and then corrected by the
+shooting system above, with at most 40 Newton iterations. For geometric
+interpretation we also record
+\[
+A=
+\max_t
+\sqrt{(x(t)-x^\ast)^2+(y(t)-y^\ast)^2}.
+\]
+
+Several safeguards prevent continuation onto spurious or unrelated
+solutions. Correction is terminated after an integration failure caused by
+a near collision; solutions with
+\[
+T<0.4T_0
+\]
+are rejected to prevent collapse toward the trivial $T\rightarrow0$
+solution; and the family is terminated if the geometric amplitude more than
+doubles between consecutive members. Continuation also stops when the orbit
+approaches a primary within $0.05$ or when
+\[
+A>2.5.
+\]
+
+Because the continuation parameter is the prescribed amplitude $a$, these
+computations determine only the portion of each family reachable while $a$
+remains a useful monotone local coordinate. We therefore make no claim that
+the computed curves are maximal periodic-orbit families. Continuation
+through a turning point in $a$ would require pseudo-arclength continuation
+in the extended periodic-orbit system, which is not attempted here.
+
+The ten parent modes were chosen to sample distinct dynamical situations.
+Families~1--4 use both centre modes of one doubly-elliptic equilibrium on
+each admissible arc. Families~5--6 use centre modes of selected
+saddle$\times$centre equilibria. Families~7--8 are seeded from the
+Case-1 equilibrium near the $3{:}2$ near-commensurability identified in
+Section~\ref{subsec:centrefreq}, and families~9--10 from the distinct
+Case-2 equilibrium near the $5{:}2$ near-commensurability. As established
+in Section~\ref{subsec:centrefreq}, the latter parent is
+\[
+(x,y)\simeq(-1.70,1.96),
+\qquad
+\omega_1/\omega_2\simeq2.465,
+\]
+and is not the separate Case-2 equilibrium lying near the $2{:}1$ ratio.
+
+For every family the smallest corrected members approach the intended
+linear mode:
+\[
+\mathbf u_0(a)\rightarrow L_j,
+\qquad
+T(a)\rightarrow\frac{2\pi}{\omega_k}
+\qquad\text{as }a\rightarrow0.
+\]
+For example,
+\[
+\frac{2\pi}{0.925}=6.793,\qquad
+\frac{2\pi}{0.406}=15.48,\qquad
+\frac{2\pi}{0.922}=6.815,
+\]
+in agreement with the smallest computed periods of families~1--3 to the
+reported precision.
+
+
+\subsection{Floquet stability}
+\label{subsec:floquet}
+
+The linear stability of each corrected periodic orbit is determined from
+its monodromy matrix $M=\Phi(T)$. The Hamiltonian structure of the
+rotating-frame problem implies reciprocal symmetry of the Floquet
+multipliers. For a periodic orbit of this two-degree-of-freedom autonomous
+Hamiltonian system there is also a trivial multiplier pair at $+1$,
+associated with the flow and energy-family directions. Numerically this
+pair is recovered to within a few times $10^{-6}$.
+
+After removal of the trivial pair, one nontrivial reciprocal multiplier
+pair remains. If its members are denoted $\lambda$ and $\lambda^{-1}$, we
+use the stability index
+\begin{equation}
+\nu
+=
+\lambda+\lambda^{-1}.
+\label{eq:floquet_index}
+\end{equation}
+For the planar problem $\nu$ is real. The nontrivial multipliers lie on the
+unit circle when
+\[
+|\nu|<2
+\]
+and form a real reciprocal pair when
+\[
+|\nu|>2.
+\]
+The limiting values
+\[
+\nu=+2
+\qquad\text{and}\qquad
+\nu=-2
+\]
+correspond respectively to a $+1$ collision and a period-doubling
+($-1$) collision of the nontrivial multipliers.
+
+We use ``Floquet stable'' only to mean that the nontrivial multiplier pair
+lies on the unit circle to the stated numerical tolerance; it does not
+imply nonlinear stability of the periodic orbit. Since only one
+nontrivial reciprocal pair remains in the planar problem, a Hamiltonian
+collision between two distinct nontrivial multiplier pairs cannot occur;
+the relevant local stability boundaries are therefore the values
+$\nu=\pm2$.
+
+Although DOP853 is not a symplectic integrator, the computed monodromy
+matrices preserve the expected Hamiltonian structure to good numerical
+accuracy. Over the 198 accepted orbits,
+\[
+|\det M-1|\leq1.5\times10^{-8},
+\qquad
+|\lambda_1\lambda_2-1|\leq1.5\times10^{-8},
+\]
+with median values near $10^{-13}$, while the trivial pair remains within
+$5\times10^{-6}$ of $+1$ (median $\sim3\times10^{-8}$). These diagnostics
+provide an independent numerical check on the Floquet classification.
+
+
+\subsection{Computed families and near-period-doubling behaviour}
+\label{subsec:periodic_results}
+
+The ten families comprise 198 accepted periodic solutions. Their parent
+equilibria, centre frequencies, Jacobi and period ranges, closure residuals,
+and Floquet classifications are summarized in
+Table~\ref{tab:periodic_families}.
+
+Families~1--4 originate from the selected doubly-elliptic equilibria on the
+two admissible arcs. Both centre modes of each parent produce corrected
+Lyapunov families whose nontrivial Floquet multipliers remain on the unit
+circle throughout the computed intervals. Figures~\ref{fig:family_case1}
+and~\ref{fig:family_case2} show representative small, intermediate, and
+large members. The smallest solutions reproduce the corresponding linear
+centre modes, while larger members deform substantially without losing
+Floquet stability over the continuation range. Figure~\ref{fig:famevol}
+shows the period, geometric amplitude, and Floquet index of all ten
+families against $C_J$.
+
+Families~5--6 demonstrate the contrasting behaviour of
+saddle$\times$centre parents. Their selected centre modes satisfy the
+Lyapunov-centre non-resonance condition discussed in
+Section~\ref{subsec:centrefreq}, so genuine local periodic families exist
+despite the hyperbolic companion direction. Their nontrivial Floquet
+multipliers, however, form a strongly real reciprocal pair, giving
+\[
+|\nu|\sim10^3
+\]
+over the computed portions. These families are therefore real unstable.
+A representative member is shown in Figure~\ref{fig:selected_orbits}.
+
+Families~7--10 sample the near-commensurate doubly-elliptic regions.
+Families~7--8 originate near the Case-1 $3{:}2$ ratio, while
+families~9--10 originate near the Case-2 $5{:}2$ ratio. These ratios are
+near-commensurabilities rather than exact resonances at the parent
+equilibria, so their local existence as Lyapunov families is unaffected.
+
+Two of these families approach the period-doubling boundary
+$\nu=-2$ as their amplitudes increase. Fine continuation near the minimum
+of
+\[
+|\nu+2|
+\]
+shows that family~8 remains approximately
+\[
+2\times10^{-3}
+\]
+away from the threshold, whereas family~10 approaches much more closely,
+reaching
+\begin{equation}
+\min_a|\nu+2|
+\simeq1.0\times10^{-7},
+\qquad
+\nu\simeq-1.99999990,
+\qquad
+A\simeq0.28.
+\label{eq:near_period_doubling}
+\end{equation}
+The index subsequently moves away from $-2$ rather than crossing it
+(Figure~\ref{fig:period_doubling_scan}).
+
+The approach was re-examined with an ultra-fine amplitude sweep (amplitude
+step $8\times10^{-4}$) around the minimum, which returns the same closest
+approach, $\min_a|\nu+2|\simeq1.0\times10^{-7}$ at $\nu\simeq-1.99999990$,
+with the index turning back rather than crossing. All orbits are integrated
+at $\mathrm{rtol}=\mathrm{atol}=10^{-12}$
+(Section~\ref{subsec:periodic_continuation}), and the monodromy diagnostics
+of Section~\ref{subsec:floquet} confirm that the multiplier computation
+remains reliable at this near-degenerate point. We therefore find no
+period-doubling crossing over the computed continuation interval. In
+particular, the calculation provides no evidence for a local period-doubled
+branch bifurcating from family~10 within that interval.
+
+A corresponding scan of the computed families for crossings of the
+selected low-order multiplier conditions
+\[
+\nu=2,\qquad
+\nu=0,\qquad
+\nu=-1,\qquad
+\nu=-2
+\]
+finds none over the continuation ranges investigated. This is a negative
+result restricted to the computed families and amplitudes; it is not a
+claim that secondary resonant or period-doubled periodic solutions cannot
+exist elsewhere in phase or parameter space.
+
+Finally, four distinct notions must remain separate. Spectral stability of
+an equilibrium refers to the eigenvalues of
+\eqref{eq:variational_matrix}; Floquet stability of a periodic orbit refers
+to its monodromy multipliers; numerical boundedness over a finite
+integration interval establishes neither; and nonlinear or KAM stability
+is not proved in this work. Every periodic orbit reported here satisfies
+the closure conditions \eqref{eq:periodic_acceptance}, and every periodic
+stability label is a Floquet statement.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{periodic_family_case1_mode2.pdf}
+  \caption{Stable Lyapunov family from the Case-1 arc equilibrium (mode
+  $\omega_2$): small (linear-mode seed), moderate, and large members. Green
+  $+$: parent equilibrium; black dot: initial point; arrow: direction; stars:
+  primaries in view. Floquet stable throughout.}
+  \label{fig:family_case1}
+\end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{periodic_family_case2_mode1.pdf}
+  \caption{Stable Lyapunov family from the Case-2 arc equilibrium (mode
+  $\omega_1$). Floquet stable throughout.}
+  \label{fig:family_case2}
+\end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{family_evolution.pdf}
+  \caption{Family evolution: period $T$, geometric amplitude $A$, and Floquet
+  index $\nu$ (symlog) against $C_J$. Real-unstable families (5, 6) sit at
+  $\nu\sim10^{3}$; all others have $|\nu|<2$ over their computed range.}
+  \label{fig:famevol}
+\end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{selected_resonant_orbits.pdf}
+  \caption{Representative periodic orbits: a real-unstable orbit from a
+  saddle$\times$centre parent (family~5), a near-period-doubling member of
+  the Case-2 $5{:}2$ family (family~10), a multi-lobed member of the
+  Case-1 $3{:}2$ family (family~8), and a large Floquet-stable orbit
+  (family~2). Titles give the geometric amplitude, Floquet index $\nu$,
+  and Floquet class.}
+  \label{fig:selected_orbits}
+\end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.72\textwidth]{period_doubling_scan.pdf}
+  \caption{Fine scan of the Floquet index toward $\nu=-2$. Family~10 approaches
+  the threshold to within $\sim10^{-7}$ and returns; the multiplier does not
+  cross $-1$. No period-doubling bifurcation occurs.}
+  \label{fig:period_doubling_scan}
+\end{figure}

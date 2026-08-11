@@ -1,0 +1,377 @@
+\section{Numerical methods}
+\label{sec:methods}
+
+The numerical analysis has three stages. First, the finite-precision
+reference configurations are placed on the central-configuration manifold
+and the equilibria of the infinitesimal body are located independently
+(Section~\ref{subsec:eqsearch}). Second, the admissible central-configuration curves are traced
+by pseudo-arclength continuation while the equilibrium search is repeated
+at every continuation point and the resulting roots are associated into
+branches (Section~\ref{subsec:continuation}). Third, changes in equilibrium multiplicity are
+localized and tested against the nondegeneracy conditions of a generic
+saddle-node fold (Section~\ref{subsec:foldmethods}).
+
+All tables and figures in Sections~\ref{sec:results}--\ref{sec:hill} are generated from the output of the
+same numerical implementation. We distinguish throughout between the
+arclength coordinate $\ell$ along a central-configuration continuation
+curve and the normalized arc parameter $s\in[0,1]$ obtained by rescaling
+$\ell$ over an individual admissible arc.
+
+
+\subsection{Reference configurations and equilibrium search}
+\label{subsec:eqsearch}
+
+The reference configurations are specified only to finite precision and
+therefore do not lie exactly on the central-configuration manifold; their
+initial constraint residuals satisfy
+\[
+6\times10^{-3}
+\lesssim |\psi|
+\lesssim
+7\times10^{-2}.
+\]
+For each configuration we hold $(a,b)$ fixed and refine either $c_1$ or
+$c_2$, choosing the coordinate that requires the smaller displacement to
+reach
+\[
+\psi(a,b,c_1,c_2)=0.
+\]
+The scalar refinement is carried out by a bracketed Brent solve. The
+resulting configurations satisfy
+\[
+|\psi|<10^{-12}.
+\]
+For comparison, the Supplementary Material reports both the adopted
+single-coordinate displacement and the distance to the constrained nearest
+point of $\psi=0$ in the $(c_1,c_2)$ plane when both coordinates are allowed
+to vary. Every refined configuration is then checked for membership in the
+admissible set \eqref{eq:admissible_set}: all three mass ratios are positive,
+the denominators in \eqref{eq:mass_ratios} remain nonzero, and no primary
+collision occurs.
+
+At a fixed admissible configuration, the equilibria
+\eqref{eq:equilibrium_equations} are located by an independent multi-start
+Newton search that uses no previously supplied equilibrium coordinates.
+For the reference configurations the initial guesses consist of a
+deterministic $81\times81$ grid over
+\[
+[-5,5]^2
+\]
+together with 2000 uniformly distributed fixed-seed random starts. From
+each initial point we apply a damped Newton iteration to
+\[
+F(x,y)=
+\begin{pmatrix}
+\Omega_x\\
+\Omega_y
+\end{pmatrix}
+=0,
+\]
+using the analytic Hessian $H_\Omega$ of
+\eqref{eq:hessian} as the Newton Jacobian. A backtracking line search is
+used to enforce decrease of $\|F\|$.
+
+Because the effective potential is singular at the primary locations,
+initial points and Newton iterates falling within
+\[
+r_{\min}=10^{-3}
+\]
+of any primary are rejected. As an additional guard against retaining
+solutions numerically attached to a primary singularity, any converged root
+within
+\[
+10r_{\min}=10^{-2}
+\]
+of a primary is discarded.
+
+The remaining converged solutions are clustered in the $(x,y)$ plane with
+tolerance $10^{-6}$ so that repeated convergence to the same equilibrium is
+counted only once. Every retained root is required to satisfy
+\begin{equation}
+\|\nabla\Omega\|<10^{-12}.
+\label{eq:equilibrium_residual}
+\end{equation}
+The equilibrium count is therefore an output of the multi-start search
+rather than an input to it. This procedure provides a numerical search for
+all equilibria over the stated set of initial conditions; it is not an
+analytic completeness theorem. The additional searches used to verify the
+eleven-equilibrium regime are described in Section~\ref{subsubsec:eleven}.
+
+Because the analytic derivatives enter both the equilibrium solver and the
+subsequent bifurcation and stability calculations, they are independently
+validated against central finite differences at 25 test points chosen away
+from the primary singularities. The analytic gradient
+\eqref{eq:potential_gradient} is compared with finite differences of
+$\Omega$, and $H_\Omega$ with finite differences of the analytic gradient.
+The maximum discrepancies are of order $10^{-9}$ for the gradient and
+$10^{-9}$--$10^{-10}$ for the Hessian; independent finite-difference
+evaluations of the mixed derivative $\Omega_{xy}$ also agree at this level.
+
+At each equilibrium we compute the spectrum of the variational matrix
+\eqref{eq:variational_matrix}. For numerical classification we define
+\[
+\sigma=\max_j \operatorname{Re}\lambda_j
+\]
+and use the threshold
+\[
+\tau_\sigma=10^{-8}.
+\]
+An equilibrium is classified as spectrally stable when
+$\sigma\leq\tau_\sigma$ and the computed spectrum consists of two
+numerically purely imaginary conjugate pairs; otherwise it is classified
+as unstable. On spectrally stable equilibria the two positive centre
+frequencies are recorded as
+\[
+\omega_1\geq\omega_2>0.
+\]
+We also record $\det H_\Omega$, which is used as a degeneracy diagnostic in
+the fold calculation below, and the equilibrium Jacobi value
+\eqref{eq:critical_jacobi}.
+
+
+\subsection{Central-configuration continuation and branch tracking}
+\label{subsec:continuation}
+
+For the continuation study, $(a,b)$ are held fixed and we write
+\[
+\mathbf q=(c_1,c_2).
+\]
+The level set
+\[
+\psi(\mathbf q)=0
+\]
+is traced by pseudo-arclength continuation. At an accepted point
+$\mathbf q_k$ with unit tangent $\mathbf t_k$, the predictor is
+\[
+\mathbf q^\ast
+=
+\mathbf q_k+\Delta\ell\,\mathbf t_k,
+\]
+and the corrector solves
+\begin{equation}
+\begin{cases}
+\psi(\mathbf q)=0,\\[2mm]
+\mathbf t_k^{T}(\mathbf q-\mathbf q_k)-\Delta\ell=0.
+\end{cases}
+\label{eq:arclength_corrector}
+\end{equation}
+Newton's method is applied to
+\eqref{eq:arclength_corrector}, with
+$\nabla\psi$ evaluated by central differences using step
+$h=10^{-7}$. The tangent is chosen orthogonal to the constraint gradient,
+\[
+\mathbf t
+\propto
+\left(-\psi_{c_2},\,\psi_{c_1}\right),
+\]
+and its orientation is fixed by requiring
+\[
+\mathbf t_k\cdot\mathbf t_{k-1}>0.
+\]
+This allows turning points in either $c_1$ or $c_2$ to be traversed without
+changing continuation parameter.
+
+The initial continuation step is
+\[
+\Delta\ell=0.01.
+\]
+On a failed correction it is halved down to a minimum of $10^{-7}$; after
+successful corrections it is increased by a factor of $1.15$, subject to
+the maximum value $0.01$. Accepted continuation points satisfy
+\[
+|\psi|<10^{-13}.
+\]
+
+Admissibility is checked after every successful correction. Each component
+is followed in both tangent directions until the admissible set is left.
+For the arcs encountered in the present study this loss of admissibility
+occurs when one of the positive mass ratios tends to zero. The corresponding
+boundary is localized by 40 bisections and the vanishing mass ratio is
+identified. Each maximal admissible arc is then reparametrized by normalized
+arclength
+\[
+s\in[0,1].
+\]
+
+Continuation of already known equilibria is not sufficient to determine
+the equilibrium multiplicity, because a pair created at a saddle-node does
+not exist on the opposite side of the fold. We therefore repeat an
+independent multi-start equilibrium search at every accepted
+central-configuration point. For this stage the search set is enlarged to
+an $81\times81$ grid over
+\[
+[-8,8]^2,
+\]
+1000 fixed-seed random starts, and a $35\times35$ local grid
+\[
+[x_i-0.8,x_i+0.8]\times[y_i-0.8,y_i+0.8]
+\]
+around each primary. The local searches are particularly important when a
+mass ratio becomes small, because equilibria associated with that primary
+can lie close to the corresponding singularity.
+
+The same Newton solver and singularity guards as in Section~\ref{subsec:eqsearch} are used:
+initial points and Newton iterates within $10^{-3}$ of a primary are
+rejected, converged roots within $10^{-2}$ are discarded, and every retained
+root must satisfy \eqref{eq:equilibrium_residual}. Roots are clustered at
+$10^{-6}$ within the equilibrium solver; the continuation driver performs
+an additional numerical de-duplication before assembling the root set at
+each sample.
+
+For branch-dependent quantities, roots at neighbouring continuation samples
+are associated by predictor-based one-to-one matching in the equilibrium
+$(x,y)$ plane. Suppose that an active branch has its two most recent
+positions $\mathbf z_{k-1}$ and $\mathbf z_k$. Its next position is predicted
+by linear extrapolation,
+\[
+\mathbf z_{\rm pred}
+=
+2\mathbf z_k-\mathbf z_{k-1},
+\]
+and its most recent inter-sample displacement is
+\[
+\delta
+=
+\|\mathbf z_k-\mathbf z_{k-1}\|_2.
+\]
+A candidate root $\mathbf z$ is eligible for association when
+\begin{equation}
+\|\mathbf z-\mathbf z_{\rm pred}\|_2
+\leq
+\max(0.18,\,3\delta).
+\label{eq:branch_match_tolerance}
+\end{equation}
+For a newly initialized branch with only one previous position, the
+predictor is that position and the implementation uses the fallback
+$\delta=0.1$. Candidate branch--root pairs are ordered by predictor distance
+and assigned greedily subject to a one-to-one correspondence.
+
+Because an accepted association may still be geometrically weak, a separate
+reliability criterion is imposed. A match is classified as reliable only
+when
+\begin{equation}
+\|\mathbf z-\mathbf z_{\rm pred}\|_2
+\leq
+\max(0.25,\,2\delta).
+\label{eq:branch_reliability}
+\end{equation}
+Wider accepted matches, together with rapidly escaping roots near a
+mass-vanishing boundary, are flagged unreliable and excluded from
+branch-dependent stability, frequency, Jacobi, and periodic-orbit claims.
+The equilibrium count itself is determined independently by the multi-start
+root search and therefore does not depend on branch association. The same
+adaptive branch assignment is used for all branch-dependent diagnostics,
+figures, and periodic-orbit parent selections reported below.
+
+
+\subsection{Fold localization and verification}
+\label{subsec:foldmethods}
+
+Whenever the independent equilibrium search detects a change in
+multiplicity between neighbouring continuation samples, the transition is
+first localized by seven bisections in the central-configuration parameter,
+with the multi-start equilibrium search repeated at every midpoint. The
+equilibria present on the higher-count side but absent on the lower-count
+side identify the candidate merging pair.
+
+The midpoint of this pair and the corresponding bracketed primary
+configuration are then used to initialize a Newton solve of the augmented
+system
+\begin{equation}
+\mathcal G(x,y,c_1,c_2)
+=
+\begin{pmatrix}
+\Omega_x\\
+\Omega_y\\
+\det H_\Omega\\
+\psi
+\end{pmatrix}
+=
+\mathbf 0.
+\label{eq:fold_augmented_system}
+\end{equation}
+Equation~\eqref{eq:fold_augmented_system} consists of four equations in the
+four unknowns $(x,y,c_1,c_2)$, with $(a,b)$ fixed. It is solved by damped
+Newton iteration using a finite-difference Jacobian with step $10^{-6}$,
+and an augmented-system residual not exceeding $10^{-11}$ is required.
+Thus the critical equilibrium is simultaneously placed on the
+central-configuration manifold and at a degeneracy of the equilibrium map.
+
+Vanishing of $\det H_\Omega$ alone does not establish a generic
+saddle-node. Let $\mu_0$ denote the eigenvalue of $H_\Omega$ having the
+smallest absolute value at the critical point, let $\mu_\perp$ denote the
+other eigenvalue, and let $\mathbf v$ be a unit vector spanning the null
+direction,
+\[
+H_\Omega\mathbf v=0.
+\]
+A simple fold requires
+\[
+\mu_0=0,
+\qquad
+\mu_\perp\neq0,
+\]
+together with nonzero transversality and quadratic-nondegeneracy
+coefficients
+\begin{equation}
+\alpha
+=
+\mathbf v^{T}
+\left.
+\frac{d}{d\ell}
+F\!\left(\mathbf z_c;\mathbf p(\ell)\right)
+\right|_{\ell=\ell_c},
+\qquad
+\beta
+=
+\frac{1}{2}
+D^3\Omega(\mathbf z_c)
+[\mathbf v,\mathbf v,\mathbf v],
+\label{eq:fold_coefficients}
+\end{equation}
+where $\mathbf z_c=(x_c,y_c)$ is the critical equilibrium and
+$\mathbf p(\ell)$ denotes the primary configuration along the
+central-configuration curve. In the parameter derivative defining
+$\alpha$, the equilibrium position $\mathbf z_c$ is held fixed while the
+primary geometry and masses vary consistently along the CC curve through
+\eqref{eq:mass_ratios}. Both $\alpha$ and $\beta$ are evaluated by centred
+finite differences.
+
+For
+\[
+\alpha\neq0,
+\qquad
+\beta\neq0,
+\]
+Lyapunov--Schmidt reduction of the equilibrium equations onto the null
+direction gives the local fold normal form
+\[
+\alpha(\ell-\ell_c)+\beta u^2+\cdots=0,
+\]
+and hence
+\[
+u_\pm
+\sim
+\pm
+\sqrt{-\frac{\alpha}{\beta}(\ell-\ell_c)}.
+\]
+The separation $d$ of the merging pair must therefore satisfy
+\begin{equation}
+d\propto|\ell-\ell_c|^{1/2}.
+\label{eq:fold_scaling}
+\end{equation}
+We test this prediction independently by resolving the merging pair on the
+side of the fold on which it exists and fitting
+\[
+d\propto|\ell-\ell_c|^\gamma
+\]
+on the innermost resolved points in log--log coordinates. Since $s$ is a
+smooth monotone rescaling of $\ell$ on each admissible arc, the exponent is
+unchanged when expressed in terms of $|s-s_c|$.
+
+Finally, the variational spectrum is evaluated along every reliably tracked
+equilibrium branch. Where two centre frequencies are present, the ratio
+$\omega_1/\omega_2$ is compared with the low-order rational ratios examined
+in Section~\ref{sec:stability}, using the numerical proximity tolerance $0.04$. These
+near-resonance flags are indicators for the subsequent periodic-orbit
+analysis; they are not treated as evidence of exact nonlinear resonance.

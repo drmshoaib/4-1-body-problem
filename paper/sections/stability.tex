@@ -1,0 +1,283 @@
+\section{Stability and centre modes}
+\label{sec:stability}
+
+We now examine the linear stability of the equilibrium branches obtained in
+Section~\ref{sec:results} and identify the centre modes from which the periodic-orbit
+families of Section~\ref{sec:periodic} are continued. The spectral criterion and numerical
+threshold have already been defined in Sections~\ref{subsec:potential} and~\ref{subsec:eqsearch}; here we focus
+on the resulting stable intervals, the evolution of their centre
+frequencies, and the occurrence of low-order near-commensurabilities.
+
+
+\subsection{Spectral stability along the equilibrium branches}
+
+For each reliably tracked equilibrium branch we compute
+\[
+\sigma(s)
+=
+\max_j \operatorname{Re}\lambda_j,
+\]
+where $\lambda_j$ are the eigenvalues of the rotating-frame variational
+matrix \eqref{eq:variational_matrix}. As in Section~\ref{subsec:eqsearch}, an equilibrium is
+classified as spectrally stable when
+\[
+\sigma\leq10^{-8}
+\]
+and the spectrum consists numerically of two purely imaginary conjugate
+pairs. This is a statement about linear spectral stability only and does not
+imply nonlinear or KAM stability.
+
+The continuation shows that spectral stability is not confined to isolated
+reference configurations. On the Case-1 arc, one equilibrium branch is
+reliably tracked as spectrally stable over
+\[
+s\in[0.643,\,0.835].
+\]
+This branch contains the outer stable equilibrium identified in
+Section~\ref{subsec:verification}. Stable spectral classifications are also
+obtained farther toward the mass-vanishing end of the arc, but branch
+tracking in this rapidly escaping region is flagged unreliable by the
+criterion of Section~\ref{subsec:continuation}; those points are therefore
+not used for branch-dependent conclusions. At the refined Case-1
+configuration its position is
+approximately
+\[
+(x,y)=(2.671,\,2.622),
+\]
+and its spectrum is
+\begin{equation}
+\lambda=\pm0.9632\,i,
+\qquad
+\lambda=\pm0.2984\,i,
+\label{eq:case1_stable_spectrum}
+\end{equation}
+with real parts at the level of machine precision.
+
+The Case-2 arc contains a richer stability structure. Two distinct
+equilibrium branches are spectrally stable over substantial and overlapping
+parts of the arc (Figure~\ref{fig:sigma}). One remains stable from the beginning of the admissible
+arc to approximately
+\[
+s=0.339,
+\]
+and passes through
+\[
+(x,y)\simeq(-1.70,\,1.96)
+\]
+near $s=0.196$. A second stable branch persists to approximately
+\[
+s=0.304
+\]
+and passes through
+\[
+(x,y)\simeq(2.06,\,1.55)
+\]
+at nearly the same value of $s$. Thus a single primary configuration can
+support more than one spectrally stable libration point. Isolated
+single-sample classifications farther along the Case-2 arc are not used to
+define additional stable intervals.
+
+The pairs genuinely created at the seven interior saddle-node folds are
+spectrally unstable at the first resolved points away from their folds.
+In particular, the pair $B_a$ created at $F_4$ in the
+eleven-equilibrium regime acquires nonzero real eigenvalues immediately
+after its creation. The stable branches described above are instead
+pre-existing equilibrium branches whose spectra become purely imaginary
+over finite parameter intervals.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{sigma_max_re_vs_s.pdf}
+\caption{Leading eigenvalue real part $\sigma_i(s)$ along the reliably
+tracked equilibrium branches. Dashed vertical lines mark the saddle-node
+folds. On the Case-1 arc one branch is reliably tracked as spectrally
+stable over $s\simeq[0.643,0.835]$. On the Case-2 arc two distinct branches are
+spectrally stable, extending approximately to $s=0.339$ and $s=0.304$,
+respectively. Spectral stability means that both eigenvalue pairs are
+purely imaginary to the numerical threshold of Section~\ref{subsec:eqsearch}.}
+\label{fig:sigma}
+\end{figure}
+
+
+\subsection{Centre frequencies and low-order near-commensurabilities}
+\label{subsec:centrefreq}
+
+At a doubly-elliptic equilibrium the spectrum has the form
+\[
+\lambda=\pm i\omega_1,
+\qquad
+\lambda=\pm i\omega_2,
+\qquad
+\omega_1\geq\omega_2>0.
+\]
+We follow both positive centre frequencies along each reliably stable
+branch and examine the ratio
+\[
+R(s)=\frac{\omega_1(s)}{\omega_2(s)}.
+\]
+A point is flagged as a low-order near-commensurability when $R(s)$ lies
+within $0.04$ of one of
+\[
+1,\quad
+\frac{3}{2},\quad
+2,\quad
+\frac{5}{2},\quad
+3,\quad
+4.
+\]
+These flags are numerical proximity indicators only. They do not establish
+an exact resonance or a nonlinear resonant bifurcation.
+
+On the reliably tracked Case-1 stable branch, one low-order
+near-commensurability is resolved (Figure~\ref{fig:ratio}). Near
+\[
+s\simeq0.678
+\]
+the equilibrium is approximately
+\[
+(x,y)\simeq(2.062,-0.756),
+\]
+with
+\[
+\omega_1\simeq0.8509,
+\qquad
+\omega_2\simeq0.5645,
+\qquad
+\frac{\omega_1}{\omega_2}\simeq1.5075,
+\]
+placing it within $0.0075$ of the $3{:}2$ ratio.
+
+The two stable Case-2 branches exhibit different frequency-ratio
+structures. On the branch passing through
+\[
+(x,y)\simeq(-1.70,\,1.96)
+\]
+at $s\simeq0.196$, the centre frequencies are
+\[
+\omega_1\simeq0.9172,
+\qquad
+\omega_2\simeq0.3721,
+\]
+so that
+\begin{equation}
+\frac{\omega_1}{\omega_2}
+\simeq2.465.
+\label{eq:case2_5to2_ratio}
+\end{equation}
+This is within approximately $0.035$ of the $5{:}2$ ratio. No $2{:}1$
+near-commensurability occurs on this branch.
+
+The second stable Case-2 branch passes successively near several low-order
+ratios:
+\[
+\begin{array}{ccl}
+s\simeq0.018
+&:&
+\omega_1/\omega_2\simeq3.995
+\quad (4{:}1),
+\\[1mm]
+s\simeq0.125
+&:&
+\omega_1/\omega_2\simeq2.510
+\quad (5{:}2),
+\\[1mm]
+s\simeq0.196
+&:&
+\omega_1/\omega_2\simeq1.983
+\quad (2{:}1),
+\\[1mm]
+s\simeq0.268
+&:&
+\omega_1/\omega_2\simeq1.488
+\quad (3{:}2).
+\end{array}
+\]
+At the genuine Case-2 $2{:}1$ near-commensurability the equilibrium lies
+near
+\[
+(x,y)\simeq(2.06,\,1.55),
+\]
+with
+\[
+\omega_1\simeq0.8933,
+\qquad
+\omega_2\simeq0.4506.
+\]
+The occurrence of two different stable equilibria at essentially the same
+arc parameter $s\simeq0.196$ is important: one lies near $5{:}2$ and the
+other near $2{:}1$. The arc parameter alone therefore does not uniquely
+identify the dynamical state; branch identity must also be retained.
+
+The periodic-orbit dataset of Section~\ref{sec:periodic} samples selected members of this
+near-commensurate structure rather than attempting an exhaustive resonance
+survey. Families~7--8 are continued from the Case-1 equilibrium near the
+$3{:}2$ ratio. Families~9--10 are continued from the first Case-2 stable
+branch, namely the equilibrium near
+\[
+(-1.70,\,1.96)
+\]
+whose frequency ratio is approximately $2.465$ and is therefore associated
+with the $5{:}2$ near-commensurability. The distinct Case-2 equilibrium
+near the $2{:}1$ ratio is not used as a parent in the present
+periodic-orbit dataset.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{frequency_ratio_vs_s.pdf}
+\caption{Centre-frequency ratio $\omega_1/\omega_2$ along the reliably
+resolved spectrally stable branches. Dotted horizontal lines mark selected
+low-order rational ratios, and highlighted points indicate proximity
+within the tolerance $0.04$. These points are near-commensurability
+indicators only and do not establish exact resonance. The Case-2 panel
+contains two distinct stable equilibrium branches; at $s\simeq0.196$ one
+lies near $5{:}2$ and the other near $2{:}1$.}
+\label{fig:ratio}
+\end{figure}
+
+
+\subsection{Lyapunov-centre interpretation}
+\label{subsec:lyapunov}
+
+The centre modes identified above provide the local seeds for the
+periodic-orbit families of Section~\ref{sec:periodic}. It is therefore useful to state
+precisely when the Lyapunov centre theorem applies.
+
+Let $\pm i\omega_k$ be the simple centre pair selected for continuation at
+a parent equilibrium. The local Lyapunov family exists provided no other
+eigenvalue of the variational matrix is an integer multiple
+\[
+\pm m i\omega_k,
+\qquad
+m=2,3,\ldots
+\]
+of that selected frequency. This condition is satisfied at every parent
+used for the ten periodic-orbit families computed in Section~\ref{sec:periodic}.
+
+For the saddle$\times$centre parents of families~5--6, the companion
+eigenvalue pair is real. It therefore cannot equal an integer multiple of
+the purely imaginary centre frequency. The hyperbolic direction makes the
+resulting periodic families unstable, but it does not obstruct their local
+existence as Lyapunov families.
+
+For the doubly-elliptic parents, proximity to a rational frequency ratio
+must be distinguished from exact resonance. In particular, the
+Case-1 parent of families~7--8 has
+\[
+\omega_1/\omega_2\simeq1.5075,
+\]
+near but not equal to $3{:}2$, while the Case-2 parent of families~9--10 has
+\[
+\omega_1/\omega_2\simeq2.465,
+\]
+near but not equal to $5{:}2$. Neither ratio violates the exact
+non-resonance hypothesis of the theorem. The same distinction applies to
+the other near-commensurabilities identified above: numerical proximity to
+$2{:}1$ or $4{:}1$ is not an exact integer resonance.
+
+Accordingly, all ten families computed in Section~\ref{sec:periodic} are Lyapunov families
+in the local theorem sense. What differs among them is the stability type
+of the parent equilibrium and the proximity of its centre frequencies to
+low-order commensurabilities. Whether a continued family subsequently
+encounters a resonant or period-doubling bifurcation is a global
+continuation question and must be decided from its Floquet multipliers
+rather than inferred from the linear frequency ratio alone.

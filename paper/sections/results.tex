@@ -1,0 +1,573 @@
+\section{Equilibrium bifurcation structure}
+\label{sec:results}
+
+We now apply the numerical framework of Section~\ref{sec:methods} to determine how the
+restricted equilibria change as the underlying four-primary central
+configuration is varied. We first establish the four reference
+configurations used as the computational baseline (Section~\ref{subsec:verification}). We then
+examine the common Case-1/Case-2 slice and determine the component structure
+of its admissible central configurations (Section~\ref{subsec:components}), map the equilibrium
+multiplicity along the resulting admissible arcs and resolve the
+eleven-equilibrium regime (Section~\ref{subsec:cascades}), and finally verify every interior
+multiplicity change as a generic saddle-node fold (Section~\ref{subsec:foldverify}).
+
+
+\subsection{Baseline configurations}
+\label{subsec:verification}
+
+The four reference configurations are first refined onto the
+central-configuration manifold using the procedure of Section~\ref{subsec:eqsearch}. At each
+refined configuration the mass ratios are recomputed from
+\eqref{eq:mass_ratios}, admissibility is checked, and the restricted
+equilibria are located independently by the multi-start search. The results
+are summarized in Table~\ref{tab:baseline}. Every retained equilibrium
+satisfies
+\[
+\|\nabla\Omega\|<10^{-12}.
+\]
+
+The resulting equilibrium counts are
+\begin{equation}
+N_{\rm eq}=5,\;9,\;5,\;5
+\qquad
+\text{for Cases~1--4, respectively}.
+\label{eq:baseline_counts}
+\end{equation}
+Thus the finite-precision reference geometries can be placed consistently
+on the central-configuration manifold without altering their equilibrium
+multiplicities.
+
+One feature of this baseline will become important in Section~\ref{sec:stability}. Case~1
+contains an outer equilibrium near
+\[
+(x,y)\simeq(2.67,\,2.62)
+\]
+whose linear spectrum consists of two purely imaginary conjugate pairs. It
+is therefore spectrally stable, whereas the remaining equilibria of the
+four reference configurations are spectrally unstable. The complete
+equilibrium coordinates, refinement displacements, and per-root numerical
+diagnostics are given in the Supplementary Material.
+
+\begin{table}[t]
+\centering
+\small
+\caption{The four representative non-symmetric configurations used as the
+computational baseline. The approximate geometry is refined onto the
+central-configuration manifold $\psi=0$ while holding $(a,b)$ fixed, after
+which the mass ratios are recomputed. $N_{\rm eq}$ is the equilibrium count
+returned by the independent multi-start search, with every retained root
+satisfying $\|\nabla\Omega\|<10^{-12}$.}
+\label{tab:baseline}
+\begin{tabular}{lccccc}
+\hline
+Case &
+$(a,b)$ &
+$(c_1,c_2)_{\rm approx}$ &
+$(c_1,c_2)_{\rm refined}$ &
+$(\rho_0,\rho_1,\rho_2)$ &
+$N_{\rm eq}$\\
+\hline
+Case 1 &
+$(0.9,-0.1)$ &
+$(-0.61,0.71)$ &
+$(-0.610000,0.715655)$ &
+$(49.654,3.0981,1.1533)$ &
+5\\
+
+Case 2 &
+$(0.9,-0.1)$ &
+$(0.52,-0.88)$ &
+$(0.517714,-0.880000)$ &
+$(4.2776,0.95681,1.2772)$ &
+9\\
+
+Case 3 &
+$(1.5,0.4)$ &
+$(-0.96,0.99999)$ &
+$(-0.944942,0.999990)$ &
+$(3.0082,0.15809,0.43247)$ &
+5\\
+
+Case 4 &
+$(1.5,0.4)$ &
+$(1.05,0.13)$ &
+$(1.050584,0.130000)$ &
+$(4.3119,0.98292,0.72214)$ &
+5\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Distinct central-configuration components on the fixed slice}
+\label{subsec:components}
+
+Cases~1 and~2 share the same values
+\[
+(a,b)=(0.9,-0.1),
+\]
+while possessing different equilibrium multiplicities,
+$N_{\rm eq}=5$ and $N_{\rm eq}=9$, respectively. Their common
+fixed-$(a,b)$ slice therefore provides a natural controlled setting in
+which to ask whether the two configurations belong to the same admissible
+central-configuration family and how the restricted equilibrium structure
+changes along that family. The slice is selected directly from the
+reference configurations, before the continuation analysis; the
+disconnected component structure and the multiplicity cascade reported
+below are outcomes of the continuation rather than criteria used to choose
+the slice.
+
+We consequently continue
+\begin{equation}
+\psi(0.9,-0.1,c_1,c_2)=0
+\label{eq:fixed_slice_constraint}
+\end{equation}
+by the pseudo-arclength method of Section~\ref{subsec:continuation}. The continuation reveals two
+qualitatively different zero-set branches containing the reference
+configurations: an open branch through Case~1 and a closed loop through
+Case~2 (Figure~\ref{fig:cc_arcs}). Restricting these branches to positive
+mass ratios produces the two admissible arcs used throughout the remainder
+of the paper.
+
+The closed character of the Case-2 branch is obtained directly from the
+pseudo-arclength trace: continuation around the branch in the
+$(c_1,c_2)$ plane returns to the starting neighbourhood and completes the
+loop. No vanishing of
+\[
+\nabla_{(c_1,c_2)}\psi
+\]
+is encountered along the accepted continuation points. Thus, within the
+resolution of the numerical trace, the Case-2 loop is a regular level-set
+component. At a regular point the implicit-function theorem gives a locally
+unique smooth zero-set curve, so another branch cannot join or leave the
+loop there. The Case-1 reference configuration lies instead on the
+separately traced open branch.
+
+The numerical continuation therefore supports the conclusion that
+Cases~1 and~2 lie on distinct connected components of the regular level set
+$\psi=0$ on the investigated fixed-$(a,b)$ slice. This is deliberately a
+slice-specific numerical statement, not a global theorem for the complete
+four-parameter central-configuration set. In particular, the present
+calculation does not exclude the possibility that a path connecting the two
+configurations exists when $a$ and $b$ are also allowed to vary.
+
+The consequence for the restricted problem is important. The five- and
+nine-equilibrium reference configurations are not two points on a single
+fixed-$(a,b)$ continuation family. Their different multiplicities therefore
+cannot be interpreted as evidence of a bifurcation sequence directly
+joining Case~1 to Case~2. Equilibrium multiplicity must instead be analysed
+separately on the two components.
+
+On the branch through Case~1, the maximal admissible arc containing the
+reference configuration extends from a boundary where
+$\rho_0\rightarrow0$ to one where $\rho_2\rightarrow0$. On the branch
+through Case~2, the corresponding admissible arc extends from
+$\rho_1\rightarrow0$ to $\rho_0\rightarrow0$. Each maximal admissible arc
+is parametrized below by normalized arclength
+\[
+s\in[0,1].
+\]
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{cc_continuation_path.pdf}
+\caption{Central-configuration branches and admissible arcs in the
+$(c_1,c_2)$ plane at $(a,b)=(0.9,-0.1)$. Grey shows the numerically
+represented $\psi=0$ branches in the plotted domain; blue and red denote
+the admissible arcs containing Cases~1 and~2, respectively. Case~1 is
+marked by a star and Case~2 by a diamond. Gold circles mark the seven
+verified interior saddle-node folds $F_1$--$F_7$; the inset resolves the
+closely spaced folds $F_4$--$F_7$. The two reference configurations lie
+on distinct fixed-slice components, and each admissible arc terminates
+where a primary mass ratio vanishes.}
+\label{fig:cc_arcs}
+\end{figure}
+
+
+\subsection{Fold cascades and the eleven-equilibrium regime}
+\label{subsec:cascades}
+
+The equilibrium multiplicity cannot be determined by continuing only the
+branches already known at a reference configuration, because a pair born
+at a saddle-node does not exist on the opposite side of its fold. We
+therefore use the independent multi-start search described in
+Section~\ref{subsec:continuation} at every accepted central-configuration sample.
+
+The resulting multiplicity function $N_{\rm eq}(s)$ is shown in
+Figure~\ref{fig:count_staircase}. Along the two admissible arcs we obtain
+\begin{equation}
+\begin{aligned}
+\text{Case-1 arc:}&\qquad
+5\rightarrow7\rightarrow5\rightarrow4,
+\\
+\text{Case-2 arc:}&\qquad
+7\rightarrow9\rightarrow11\rightarrow9\rightarrow7\rightarrow5.
+\end{aligned}
+\label{eq:count_cascades}
+\end{equation}
+
+The seven interior changes all have magnitude two and are subsequently
+verified as generic saddle-node folds. They are denoted
+$F_1,\ldots,F_7$ in Figures~\ref{fig:cc_arcs}--\ref{fig:count_staircase}
+and listed in Table~\ref{tab:bifurcations}.
+
+The final $5\rightarrow4$ change on the Case-1 arc is qualitatively
+different. It occurs near
+\[
+s\simeq0.974
+\]
+as $\rho_2\rightarrow0$, when the underlying positive-mass primary
+configuration approaches the boundary of the admissible set and an
+associated equilibrium recedes to large distance. This is therefore a
+mass-vanishing parameter-boundary degeneration, not an interior
+saddle-node bifurcation. More generally, the admissible CC arcs terminate
+when one of the primary mass ratios vanishes, but such arc termination must
+not be conflated with an interior bifurcation of the restricted equilibrium
+equations.
+
+The local primary searches of Section~\ref{subsec:continuation} are especially important near
+these limits, where equilibria associated with a small primary mass can lie
+close to the corresponding singularity. The multiplicities in
+\eqref{eq:count_cascades} are those obtained after applying the augmented
+global-plus-local search throughout the arcs.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{equilibrium_count_vs_s.pdf}
+\caption{Equilibrium multiplicity $N_{\rm eq}(s)$ along the admissible
+arcs. Top: Case-1 arc; bottom: Case-2 arc. Dashed vertical lines mark the
+verified saddle-node folds $F_1$--$F_7$. The right-most Case-1 transition
+is the mass-vanishing event $\rho_2\rightarrow0$ and is not an interior
+fold.}
+\label{fig:count_staircase}
+\end{figure}
+
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Verified changes in equilibrium multiplicity along the two
+admissible central-configuration arcs. Interior count changes are generic
+saddle-node folds located from
+$\Omega_x=\Omega_y=\det H_\Omega=\psi=0$ and satisfying the
+nondegeneracy conditions of Section~\ref{subsec:foldmethods}. The coordinates
+$(c_1,c_2)_c$ describe the critical \emph{primary configuration};
+$(\alpha,\beta)$ are the transversality and quadratic-nondegeneracy
+coefficients of \eqref{eq:fold_coefficients}. The Case-1
+$5\rightarrow4$ event is a mass-vanishing boundary degeneration rather
+than an interior fold.}
+\label{tab:bifurcations}
+\begin{tabular}{llcccccl}
+\hline
+Arc & $N_{\rm eq}$ & Fold & $s_c$ &
+$(c_1,c_2)_c$ & $(\rho_0,\rho_1,\rho_2)_c$ &
+$(\alpha,\beta)$ & Type\\
+\hline
+
+Case-1 &
+$5\to7$ &
+$F_1$ &
+0.261 &
+$(-1.0717,1.0890)$ &
+$(0.507,0.993,0.965)$ &
+$(-2.72,22.4)$ &
+saddle-node\\
+
+Case-1 &
+$7\to5$ &
+$F_2$ &
+0.583 &
+$(-0.8206,0.8193)$ &
+$(3.95,1.78,1.65)$ &
+$(16.3,42.6)$ &
+saddle-node\\
+
+Case-1 &
+$5\to4$ &
+n/a &
+0.974 &
+n/a &
+n/a &
+n/a &
+$\rho_2\to0$ boundary\\
+
+Case-2 &
+$7\to9$ &
+$F_3$ &
+0.366 &
+$(0.4040,-0.9842)$ &
+$(8.9,0.667,1.27)$ &
+$(-0.615,0.0566)$ &
+saddle-node\\
+
+Case-2 &
+$9\to11$ &
+$F_4$ &
+0.768 &
+$(0.4478,-0.6231)$ &
+$(0.71,2.19,2.28)$ &
+$(-18.8,43.4)$ &
+saddle-node\\
+
+Case-2 &
+$11\to9$ &
+$F_5$ &
+0.804 &
+$(0.4246,-0.5923)$ &
+$(0.576,2.49,2.57)$ &
+$(1.18,0.231)$ &
+saddle-node\\
+
+Case-2 &
+$9\to7$ &
+$F_6$ &
+0.839 &
+$(0.3998,-0.5606)$ &
+$(0.456,2.87,2.94)$ &
+$(-6.03,-48.8)$ &
+saddle-node\\
+
+Case-2 &
+$7\to5$ &
+$F_7$ &
+0.929 &
+$(0.3333,-0.4795)$ &
+$(0.189,4.3,4.35)$ &
+$(0.506,0.173)$ &
+saddle-node\\
+
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection{The eleven-equilibrium regime}
+\label{subsubsec:eleven}
+
+The most pronounced multiplicity increase occurs on the Case-2 arc. The
+$9\rightarrow11$ fold $F_4$ at
+\[
+s_c\simeq0.768
+\]
+and the $11\rightarrow9$ fold $F_5$ at
+\[
+s_c\simeq0.804
+\]
+bound a narrow interval in which eleven distinct restricted equilibria are
+detected. The two folds occur at different primary configurations
+(Table~\ref{tab:bifurcations}) and at spatially separated restricted
+equilibria. They are therefore two distinct saddle-node events rather than
+a single higher-codimension degeneracy.
+
+Tracking the individual branches through this interval reveals a feature
+that is not visible from the multiplicity alone. At $F_4$, a new pair,
+denoted $B_a$, is created near the critical restricted equilibrium
+\[
+(x,y)\simeq(-0.38,\,0.31).
+\]
+At the representative point
+\[
+s\simeq0.786
+\]
+inside the eleven-equilibrium interval, its two members lie approximately
+at
+\[
+(-0.439,\,0.377),
+\qquad
+(-0.301,\,0.218).
+\]
+
+The pair destroyed at the subsequent $11\rightarrow9$ fold $F_5$ is not
+$B_a$. Instead, $F_5$ annihilates a pre-existing pair, denoted $B_b$, in
+the lower part of the equilibrium configuration near
+\[
+(x,y)\simeq(0.53,\,-1.70).
+\]
+Immediately before the fold its two members lie approximately at
+\[
+(0.26,\,-1.74),
+\qquad
+(0.74,\,-1.64).
+\]
+Branch tracking shows that this pair was created earlier at the
+$7\rightarrow9$ fold $F_3$.
+
+The newly created pair $B_a$ therefore survives the
+$11\rightarrow9$ transition and remains present throughout the following
+nine-equilibrium interval. It is annihilated only at $F_6$, the subsequent
+$9\rightarrow7$ fold near
+\[
+(x,y)\simeq(-0.26,\,0.12).
+\]
+Consequently,
+\[
+9\rightarrow11\rightarrow9
+\]
+is not a simple creation and subsequent destruction of the same equilibrium
+pair. The two nine-equilibrium intervals on either side of the
+eleven-equilibrium window have the same multiplicity but different branch
+populations. The eleven-equilibrium interval therefore exhibits a genuine
+branch exchange.
+
+As a robustness check, the equilibrium search was repeated at the
+representative point
+\[
+s\simeq0.786,
+\qquad
+(c_1,c_2)\simeq(0.432,-0.602),
+\]
+inside the eleven-equilibrium interval.
+The re-search uses the same $81\times81$ deterministic grid over
+$[-8,8]^2$ and the same $35\times35$ local grid around each primary as the
+main continuation analysis, but increases the number of fixed-seed random
+starts from 1000 to 1500 (seed 20260808). It again returns eleven distinct
+equilibria. Every retained root satisfies
+\[
+\|\nabla\Omega\|<10^{-12}.
+\]
+The minimum pairwise separation among all eleven roots at this configuration
+is approximately
+\[
+0.175,
+\]
+while the separation of the two members of the newly created pair $B_a$ is
+approximately
+\[
+0.21.
+\]
+
+We therefore report eleven as the number of distinct equilibria detected
+under the stated numerical search procedure. This is a numerically supported
+multiplicity on the investigated parameter interval; it is not an analytic
+upper bound on the number of real equilibria of the general restricted
+five-body problem.
+
+Figure~\ref{fig:case2_cascade} shows representative equilibrium geometries
+through the complete Case-2 sequence
+\[
+7\rightarrow9\rightarrow11\rightarrow9\rightarrow7\rightarrow5,
+\]
+with $B_a$ and $B_b$ identified explicitly. The radial branch representation
+in Figure~\ref{fig:radial_branches} gives the complementary continuation
+view and makes the branch exchange visible even where the scalar
+multiplicity alone cannot distinguish branch identity.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{cascade_geometry_snapshots.pdf}
+\caption{Equilibrium geometry at representative points of the Case-2
+cascade $7\rightarrow9\rightarrow11\rightarrow9\rightarrow7
+\rightarrow5$. Stars denote primaries, red circles unstable equilibria,
+and green diamonds spectrally stable equilibria. The branch exchange in
+the eleven-equilibrium interval is annotated explicitly: $B_a$, created
+at $F_4$, persists into the following $N_{\rm eq}=9$ interval, whereas
+the pre-existing pair $B_b$ is destroyed at $F_5$.}
+\label{fig:case2_cascade}
+\end{figure}
+
+
+The branch identities shown in Figure~\ref{fig:radial_branches} are those
+obtained from the adaptive predictor-based tracker of Section~\ref{subsec:continuation}. The same
+branch assignment is used for the stability, centre-frequency, Jacobi, and
+periodic-orbit analyses that follow. Ordinary equilibrium branches are
+therefore shown without individual labels, while the dynamically important
+pairs $B_a$ and $B_b$ are highlighted explicitly. Large-radius excursions
+near the ends of the admissible arcs correspond to equilibria receding as a
+primary mass ratio approaches zero.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{equilibrium_branches_r_vs_s.pdf}
+\caption{Radial equilibrium coordinate
+$r_i(s)=\sqrt{x_i(s)^2+y_i(s)^2}$ along the two admissible arcs.
+Ordinary branches are shown in muted grey and dashed vertical lines mark
+folds $F_1$--$F_7$. Spectrally stable equilibria are highlighted as
+described in Section~\ref{sec:stability}. On the Case-2 arc, $B_a$ is the pair created at
+$F_4$, whereas $B_b$ is the pre-existing pair destroyed at $F_5$,
+directly displaying the branch exchange in the eleven-equilibrium
+interval. Large-radius excursions near the arc ends correspond to
+equilibria receding at mass-vanishing limits.}
+\label{fig:radial_branches}
+\end{figure}
+
+
+\subsection{Saddle-node verification and scaling}
+\label{subsec:foldverify}
+
+The seven interior multiplicity changes in
+\eqref{eq:count_cascades} are tested using the fold criteria of
+Section~\ref{subsec:foldmethods}. For every transition, the augmented system
+\begin{equation}
+\Omega_x=\Omega_y=\det H_\Omega=\psi=0
+\label{eq:fold_conditions_results}
+\end{equation}
+converges to a distinct critical point with augmented-system residual not
+exceeding $10^{-11}$.
+
+At each critical point the Hessian has one numerically vanishing eigenvalue,
+denoted $\mu_0$, and one nonzero transverse eigenvalue, denoted
+$\mu_\perp$. The corresponding transversality and
+quadratic-nondegeneracy coefficients satisfy
+\[
+\alpha\neq0,
+\qquad
+\beta\neq0
+\]
+for all seven folds, with the computed $(\alpha,\beta)$ values listed in
+Table~\ref{tab:bifurcations}. Thus every interior count change satisfies the
+numerical conditions for a simple generic saddle-node fold.
+
+The local branch geometry provides an independent verification. For each
+fold the merging pair is resolved on the side of the critical parameter on
+which both equilibria exist. The two roots approach one another and meet at
+the numerically determined fold location, as illustrated for representative
+cases in Figure~\ref{fig:fold_local}.
+
+We further fit their separation to
+\begin{equation}
+d\propto|\ell-\ell_c|^\gamma
+\label{eq:measured_fold_scaling}
+\end{equation}
+using the innermost resolved points. Across the seven folds the fitted
+exponents satisfy
+\[
+0.44\leq\gamma\leq0.52,
+\]
+consistent with the Lyapunov--Schmidt prediction
+\[
+\gamma=\frac{1}{2}
+\]
+derived in Section~\ref{subsec:foldmethods}. Since the normalized coordinate $s$ is a smooth
+monotone rescaling of $\ell$ on each admissible arc, the same local exponent
+is obtained when the distance to the critical point is expressed using
+$|s-s_c|$.
+
+The agreement of four independent diagnostics (the observed
+$\Delta N_{\rm eq}=\pm2$ count changes, convergence of the augmented
+degeneracy system, satisfaction of the fold nondegeneracy conditions, and
+the square-root pair-separation law) provides mutually consistent evidence
+that $F_1,\ldots,F_7$ are generic saddle-node bifurcations of the restricted
+equilibrium equations.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fold_zoom_main.pdf}
+\caption{Three representative saddle-node folds (a Case-1 fold, an
+ordinary Case-2 fold, and the $9\rightarrow11$ fold bounding the
+eleven-equilibrium interval): the $x$-coordinates of the merging pair meet
+at $\ell=\ell_c$ (dashed).}
+\label{fig:fold_local}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{fold_separation_exponent.pdf}
+\caption{Saddle-node pair-separation scaling. Left: a representative fold
+(Case-2 $7\rightarrow9$) showing the merging-pair separation $d$ against
+$|\ell-\ell_c|$ on log--log axes, with the fitted slope and the reference
+slope $\tfrac12$. Right: the fitted exponents $\gamma$ of all seven folds
+against the theoretical value $\gamma=\tfrac12$ (shaded band
+$[0.45,0.55]$); all lie in $[0.44,0.52]$.}
+\label{fig:fold_scaling}
+\end{figure}

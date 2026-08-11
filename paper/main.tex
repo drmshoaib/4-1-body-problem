@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+
+% ---------------------------------------------------------------------------
+% Equilibrium Bifurcations and Periodic Dynamics in a Planar Restricted
+% Five-Body Problem with Four Unequal Primaries
+%
+% Tables in tables/ and figures in figures/ are AUTO-GENERATED from the
+% verified result CSVs (paper/make_tables.py, scripts/make_*_figures.py).
+% Supplementary Material: supplement.tex.
+% ---------------------------------------------------------------------------
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{3em}
+
+\graphicspath{{figures/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+% consistent notation
+\newcommand{\Om}{\Omega}
+\newcommand{\Ox}{\Omega_x}
+\newcommand{\Oy}{\Omega_y}
+\newcommand{\Oxx}{\Omega_{xx}}
+\newcommand{\Oxy}{\Omega_{xy}}
+\newcommand{\Oyy}{\Omega_{yy}}
+\newcommand{\rzero}{\rho_0}
+\newcommand{\rone}{\rho_1}
+\newcommand{\rtwo}{\rho_2}
+\newcommand{\CJ}{C_J}
+\newcommand{\grad}{\nabla}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Equilibrium Bifurcations and Periodic Dynamics in a Planar
+Restricted Five-Body Problem with Four Unequal Primaries}
+
+% AUTHORS: affiliations still to be finalized
+\author{Muhammad Shoaib \and A.~R.~Kashif}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+We investigate the planar restricted five-body problem in which four
+unequal primaries form a non-symmetric coplanar central configuration and
+an infinitesimal fifth body moves in the associated uniformly rotating
+field. After implementing and validating the model, we fix
+$(a,b)=(0.9,-0.1)$ and continue the admissible central configurations in
+the remaining geometric parameters. The principal result is structural:
+on this slice the admissible set $\psi=0$ separates numerically into two
+distinct connected components, so configurations with different
+equilibrium multiplicities need not belong to a single continuous family.
+Pseudo-arclength continuation combined with independent multi-start
+equilibrium searches reveals the interior cascades
+\[
+5\rightarrow7\rightarrow5
+\qquad\text{and}\qquad
+7\rightarrow9\rightarrow11\rightarrow9\rightarrow7\rightarrow5.
+\]
+All seven interior count changes are generic saddle-node folds, verified
+through an augmented degeneracy system, nondegeneracy conditions, and the
+local scaling
+\[
+d\propto|\ell-\ell_c|^{1/2}.
+\]
+The eleven-equilibrium regime exhibits a branch exchange: the pair created
+at the $9\rightarrow11$ fold is distinct from the pre-existing pair
+destroyed at the subsequent $11\rightarrow9$ fold. Both admissible
+components contain reliably resolved intervals of spectrally stable
+equilibria. From selected simple centre modes we continue ten Lyapunov
+periodic-orbit families comprising 198 corrected periodic solutions with
+closure residuals below $10^{-10}$. Families continued from the selected
+doubly-elliptic parents remain Floquet stable over the computed intervals,
+whereas those continued from selected saddle$\times$centre parents are
+real unstable. Selected near-commensurate families approach the
+period-doubling threshold; the closest, on family~10, reaches
+$|\nu+2|\simeq10^{-7}$ but turns back without crossing. Finally, critical
+Jacobi levels are used to demonstrate a resolution-robust representative
+change in Hill-region connectivity and to place selected periodic families
+within their accessible regions. All conclusions concerning
+central-configuration connectivity and equilibrium multiplicity are
+numerical and specific to the investigated parameter slice.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/model}
+\input{sections/numerical_methods}
+\input{sections/results}
+\input{sections/stability}
+\input{sections/periodic_orbits}
+\input{sections/hill_regions}
+\input{sections/discussion}
+\input{sections/conclusions}
+
+\section*{Data and code availability}
+The model, continuation, bifurcation, stability, and periodic-orbit
+computations, together with the scripts that generate every table and figure in
+this paper deterministically from the verified result files, are organized as a
+single release archive. Every numerical result was produced with
+\emph{Python~3.14.5} and \emph{NumPy~2.5.0}, \emph{SciPy~1.17.1},
+\emph{Matplotlib~3.10.9}, and \emph{pandas~3.0.3}; integrations use
+\texttt{scipy.integrate.solve\_ivp} with the \texttt{DOP853} method at
+$\mathrm{rtol}=\mathrm{atol}=10^{-12}$, and all random seeds are fixed, so the
+pipeline is designed to be deterministically reproducible within the pinned
+software environment. The exact code and result set will be deposited in a public
+repository and a permanent archive \emph{at submission}, and the following
+identifiers completed: \emph{repository:} [URL];\ \emph{commit/tag:} [hash];\
+\emph{archive DOI:} [DOI]. Full numerical settings and per-file provenance are
+documented in the accompanying reproducibility protocol.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

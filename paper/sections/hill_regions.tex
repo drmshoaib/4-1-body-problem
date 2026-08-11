@@ -1,0 +1,219 @@
+\section{Jacobi levels and Hill-region topology}
+\label{sec:hill}
+
+The Jacobi integral provides the geometric link between the equilibrium
+bifurcations of Section~\ref{sec:results} and the periodic dynamics of
+Section~\ref{sec:periodic}. We first follow the critical Jacobi values
+associated with the equilibrium branches, then resolve one representative
+change in Hill-region connectivity in the eleven-equilibrium regime, and
+finally place selected periodic families within their corresponding
+accessible regions.
+
+
+\subsection{Critical Jacobi levels along the equilibrium branches}
+\label{subsec:critical_jacobi}
+
+Under the convention of Section~\ref{subsec:jacobi}, motion at Jacobi
+constant $C_J$ is restricted to the Hill region
+\begin{equation}
+\mathcal H(C_J)
+=
+\left\{
+(x,y):2\Omega(x,y)\geq C_J
+\right\},
+\label{eq:hill_region_results}
+\end{equation}
+whose boundary is the zero-velocity curve
+\[
+2\Omega(x,y)=C_J.
+\]
+
+Away from the primary singularities, the restricted equilibria are the
+finite critical points of $\Omega$. Each equilibrium branch $L_i(s)$
+therefore determines a critical Jacobi level
+\begin{equation}
+C_{J,i}(s)
+=
+2\Omega\!\left(L_i(s)\right).
+\label{eq:critical_jacobi_branch}
+\end{equation}
+For a regular finite level set, changes in the topology of the Hill region
+can occur only when $C_J$ passes through such a critical value. Depending
+on the local type of the critical point, the change may involve the opening
+or closing of a neck, the creation or loss of a bounded component, or a
+change in the number of holes; a critical value does not therefore imply a
+change in component count in every case.
+
+Figure~\ref{fig:jacobi_levels} shows
+$C_{J,i}(s)$ along the reliably tracked equilibrium branches. The
+near-primary equilibria generally occupy the upper part of the critical
+level ladder, whereas the more distant equilibria occur at lower levels.
+Branches created or destroyed at the saddle-node folds introduce,
+respectively remove, pairs of critical levels. At the fold itself the two
+equilibrium branches coalesce at the same critical point and hence at the
+same Jacobi value. The fold cascade of Section~\ref{sec:results} therefore
+reorganizes not only the number of equilibria but also the hierarchy of
+finite critical energy levels available to the restricted body.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{critical_jacobi_vs_s.pdf}
+  \caption{Critical Jacobi values
+  $C_{J,i}(s)=2\Omega(L_i(s))$ along the reliably tracked equilibrium
+  branches of the two admissible arcs. Dashed vertical lines mark the
+  saddle-node folds. Each curve gives a finite critical level at which the
+  regular Hill-region topology may change.}
+  \label{fig:jacobi_levels}
+\end{figure}
+
+
+\subsection{A representative connectivity change}
+\label{subsec:hill_connectivity}
+
+We resolve a representative connectivity change in the
+eleven-equilibrium regime on the Case-2 arc, at
+\[
+s\simeq0.786,
+\qquad
+(c_1,c_2)\simeq(0.432,-0.602).
+\]
+Two Jacobi levels bracketing a portion of the interior critical-level
+ladder are shown in the top row of Figure~\ref{fig:hill_regions}. They are
+chosen as
+\[
+C_J=11.63
+\qquad\text{and}\qquad
+C_J=12.83,
+\]
+approximately $\pm0.6$ about the median equilibrium critical value
+$C_J\simeq12.23$ at this configuration. The interval contains three finite
+equilibrium critical values, approximately
+\[
+11.824,\qquad 11.924,\qquad 12.233.
+\]
+
+At $C_J=11.63$ the allowed set forms one connected component on the
+computational domain, whereas at $C_J=12.83$ an inner allowed region has
+detached from the outer region, giving two connected components. Increasing
+$C_J$ across this interval therefore produces a net neck-closing transition
+that separates a bounded inner component from the unbounded exterior
+component. Because the interval spans a small cluster of critical values,
+this calculation demonstrates the net connectivity change across that
+portion of the critical-level ladder; it does not assign the transition to
+one isolated critical equilibrium.
+
+The component count is evaluated numerically by sampling
+$2\Omega(x,y)$ on a uniform
+\[
+400\times400
+\]
+grid over
+\[
+[-6,6]^2,
+\]
+forming the binary allowed set
+\[
+2\Omega(x,y)\geq C_J,
+\]
+and applying four-connectivity labelling. Because
+\[
+2\Omega(x,y)\rightarrow+\infty
+\]
+both as a primary is approached and as
+$\sqrt{x^2+y^2}\rightarrow\infty$, sufficiently small punctured
+neighbourhoods of the primaries and the far exterior belong to the allowed
+region for every finite $C_J$. No artificial exclusion mask is introduced
+around the primaries in the component calculation.
+
+The calculation was repeated on
+\[
+300\times300
+\qquad\text{and}\qquad
+500\times500
+\]
+grids. The detailed location and shape of the narrow neck are naturally
+resolution dependent, but the reported change from one to two connected
+components at the two quoted Jacobi levels is unchanged.
+
+This calculation is intentionally representative rather than exhaustive.
+Figure~\ref{fig:jacobi_levels} contains many other finite critical levels,
+and crossing them need not always alter the component count; a complete
+classification would require resolving the topology on both sides of every
+critical level. We do not attempt that census here.
+
+
+\subsection{Periodic families within the accessible regions}
+\label{subsec:hill_orbits}
+
+The lower panels of Figure~\ref{fig:hill_regions} place representative
+Floquet-stable periodic orbits within the Hill regions corresponding to
+their own Jacobi constants. The Case-2 example uses family~3 at
+approximately
+\[
+C_J=21.34,
+\]
+while the Case-1 example uses family~2 at approximately
+\[
+C_J=24.04.
+\]
+In both cases the periodic orbit lies entirely inside a single connected
+allowed region and remains separated from the zero-velocity boundary.
+
+For the displayed trajectories we also evaluate the Hill margin
+\[
+\Delta_H(t)=2\Omega(x(t),y(t))-C_J.
+\]
+The minimum values along the plotted family-3 and family-2 members are
+approximately
+\[
+0.529
+\qquad\text{and}\qquad
+2.65\times10^{-3},
+\]
+respectively. Both remain positive, confirming numerically that the
+displayed trajectories remain inside the allowed region and do not
+intersect the zero-velocity curve.
+
+The examples illustrate the spatial distinction between the different
+dynamical regimes encountered in Section~\ref{sec:periodic}. Periodic
+librations associated with the selected outer doubly-elliptic equilibria
+occupy broad allowed regions away from the most intricate near-primary
+geometry, whereas periodic motion associated with inner
+saddle$\times$centre equilibria occurs in a more strongly structured
+near-primary region. The Hill geometry does not determine Floquet
+stability, but it specifies the energetically accessible part of the plane
+within which each periodic family must lie.
+
+Taken together, Figures~\ref{fig:jacobi_levels} and
+\ref{fig:hill_regions} illustrate the sequence
+\[
+\text{equilibrium bifurcation}
+\longrightarrow
+\text{critical Jacobi level}
+\longrightarrow
+\text{Hill-region topology}
+\longrightarrow
+\text{periodic dynamics}.
+\]
+The saddle-node cascade changes the set of finite critical values
+$C_{J,i}(s)$; crossing those values can reorganize the accessible-region
+topology; and the periodic families of Section~\ref{sec:periodic} are
+confined to the resulting Hill regions. The present computation
+demonstrates this connection through a resolution-checked representative
+transition rather than a complete topological classification.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{hill_topology_with_orbits.pdf}
+  \caption{Hill regions (shaded: allowed,
+  $2\Omega\geq C_J$; blue: zero-velocity curve). Stars denote primaries,
+  red points equilibria, and purple curves periodic orbits. Top: the
+  eleven-equilibrium regime at $C_J=11.63$ (left) and $C_J=12.83$
+  (right), bracketing a small cluster of finite critical Jacobi levels;
+  the allowed set changes from one connected component to two across this
+  interval as a neck closes.
+  Bottom: representative Floquet-stable periodic orbits in the Case-2
+  (family~3, left) and Case-1 (family~2, right) regimes, each shown at its
+  own Jacobi constant.}
+  \label{fig:hill_regions}
+\end{figure}

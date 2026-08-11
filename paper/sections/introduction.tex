@@ -1,0 +1,64 @@
+\section{Introduction}
+\label{sec:intro}
+
+Restricted $n$-body models, in which an infinitesimal body moves in the gravitational field of a prescribed relative equilibrium of massive primaries, provide a classical setting for studying the organization of celestial-mechanical phase space. In the circular restricted three-body problem (CR3BP), the five Lagrange equilibria, their linear stability, the associated zero-velocity curves and Hill regions, and the periodic-orbit families emanating from them are well understood \cite{szebehely1967,meyerhalloffin2009}. Higher restricted problems retain this basic structure but introduce an additional dependence on the geometry and mass distribution of the primaries: both the number of relative equilibria and their dynamical character can change as the primary configuration is varied.
+
+This dependence is already apparent in the restricted four-body problem. For three primaries in the Lagrange equilateral configuration, the locations, number, and stability of the libration points vary with the primary mass ratios, and the problem supports extensive families of periodic orbits \cite{baltagiannispapadakis2011a,baltagiannispapadakis2011b}; the stability of the corresponding four-body relative equilibria was analysed earlier by Sim\'o \cite{simo1978}. Baltagiannis and Papadakis also extended the periodic-orbit analysis to configurations with three unequal primaries, including the linear stability of the resulting families \cite{baltagiannispapadakis2011b}. In contrast, we are not aware of an analogous periodic-orbit study in the restricted five-body problem in which all four primaries have distinct masses and form a general non-symmetric central configuration.
+
+Restricted five-body models introduce a further level of geometric freedom. Ollongren considered four primaries in a symmetric configuration and obtained nine libration points, including stable equilibria \cite{ollongren1988}. Subsequent studies have examined regular-polygon and other symmetric arrangements \cite{kalvouridis1999}, numerical basins of attraction of the equilibria \cite{zotossuraj2018}, and networks of symmetric and non-symmetric periodic orbits \cite{zotospapadakis2019}. These investigations demonstrate that the restricted five-body problem can possess a substantially richer equilibrium and periodic-orbit structure than the CR3BP.
+
+A crucial additional constraint is that the primaries cannot, in general, be placed arbitrarily. To remain fixed relative to one another in a uniformly rotating frame, they must themselves form a central configuration (CC). The geometry and multiplicity of four-body central configurations have therefore long been studied independently of the restricted problem, from the classical work of Moulton \cite{moulton1900} to later results on their stability, bifurcation structure, and finiteness \cite{simo1978,hamptonmoeckel2006}. Many tractable four-body families impose some form of symmetry, such as equal masses, reflection symmetry, or a kite or trapezoidal geometry \cite{stevesroy1998,benhammouda2020}. Such assumptions reduce the dimensionality of the CC problem and can permit partly analytic treatment, but they also restrict the set of primary geometries accessible to the infinitesimal body.
+
+The general coplanar four-body formulation of Shoaib et al.\ \cite{shoaib2023} removes this restriction. After normalization, three primaries define a reference triangle while the fourth is free in the plane; the four masses are then determined, up to scale, by a scalar central-configuration constraint together with positivity conditions on the resulting mass ratios. The admissible primary configurations therefore form a nontrivial subset of a continuous geometric parameter space rather than a prescribed symmetric family. Introducing an infinitesimal fifth body into this rotating four-primary configuration leads naturally to the question considered here:
+
+\begin{quote}
+\emph{How do the equilibrium structure and the associated local nonlinear dynamics of the restricted body change as the underlying non-symmetric four-primary central configuration is continuously deformed?}
+\end{quote}
+
+This question cannot be answered by comparing isolated parameter choices alone. Two configurations may possess different numbers of equilibria without belonging to the same connected component of the admissible CC set, in which case there is no bifurcation sequence directly connecting their equilibrium counts. Conversely, an individual admissible component may pass through equilibrium multiplicities not represented by the original sampled configurations. The topology of the primary CC set must therefore be determined together with the restricted equilibria if one wishes to understand how those equilibria are created, destroyed, and reorganized.
+
+To our knowledge, existing studies of unequal or non-symmetric restricted four- and five-body problems predominantly analyse specified primary configurations or restricted parameter families rather than tracing the equilibrium structure along a continuously varying general four-body CC. Detailed continuation and periodic-orbit studies of restricted five-body models have, in particular, largely exploited prescribed symmetric primary configurations \cite{ollongren1988,kalvouridis1999,zotospapadakis2019}. We are not aware of a study that simultaneously follows an admissible non-symmetric four-primary CC family, determines the restricted equilibria along it, locates and classifies their bifurcations, tracks their linear stability, and then continues the periodic dynamics associated with the resulting centre modes. This is the gap addressed in the present work.
+
+Our analysis combines pseudo-arclength continuation of the primary CC constraint with an independent global search for the equilibria of the infinitesimal body at each continuation point. The distinction is important: an equilibrium branch created at a saddle-node does not exist before the bifurcation and may therefore be missed if one merely continues previously known roots. Changes in the equilibrium count are bracketed and the corresponding critical configurations are refined by solving the equilibrium equations together with the Hessian-degeneracy condition. Genericity is tested through the fold transversality and quadratic-nondegeneracy conditions and independently through the local square-root scaling of the merging pair. Linear spectra are then followed along the resulting equilibrium branches. Centre modes at selected equilibria provide initial seeds for differential correction and continuation of nonlinear periodic-orbit families, whose stability is determined from their Floquet multipliers. Finally, the critical Jacobi values provide a geometric link between the equilibrium structure and the accessible Hill regions.
+The principal results are as follows.
+
+
+\begin{enumerate}
+
+\item On the common Case-1/Case-2 slice
+\[
+(a,b)=(0.9,-0.1),
+\]
+the admissible four-primary CC set separates numerically into two distinct
+connected components. Consequently, the five- and nine-equilibrium reference
+configurations do not lie on a single fixed-$(a,b)$ continuation family.
+
+\item Equilibrium multiplicity changes along the two admissible components
+through seven generic saddle-node folds. The corresponding sequences are
+\[
+5\rightarrow7\rightarrow5
+\]
+on the first component and
+\[
+7\rightarrow9\rightarrow11\rightarrow9\rightarrow7\rightarrow5
+\]
+on the second. The eleven-equilibrium regime contains a nontrivial branch
+exchange: the pair created at the $9\rightarrow11$ fold is distinct from the
+pre-existing pair destroyed at the subsequent $11\rightarrow9$ fold.
+
+\item Both admissible components contain intervals of spectrally stable
+equilibria. Continuation from selected centre modes yields ten Lyapunov
+periodic-orbit families. The families associated with the selected
+doubly-elliptic parent equilibria remain Floquet stable over the computed
+intervals, whereas those associated with selected saddle$\times$centre parents
+are real unstable. Families seeded near low-order centre-frequency
+commensurabilities approach the period-doubling threshold but do not cross it
+within the computed continuation range.
+
+\item The critical Jacobi values associated with the equilibrium branches
+provide a direct connection between the bifurcation structure and the
+geometry of the accessible region. A representative Hill-region connectivity
+change is resolved numerically and related to the computed periodic motion.
+
+\end{enumerate}
+The principal conclusion is therefore not simply that the present asymmetric problem supports as many as eleven equilibria. Rather, on the investigated parameter slice, the \emph{topology of the admissible primary central-configuration set organizes which restricted equilibrium branches coexist and which bifurcation sequences are accessible}. The eleven-equilibrium state, the stable equilibrium intervals, and the associated periodic-orbit families arise as dynamical consequences of this organization. All statements concerning component connectivity and equilibrium completeness are numerical and apply to the chosen slice of the full four-parameter admissible set; continuation through the complete CC parameter space remains an open problem. 
