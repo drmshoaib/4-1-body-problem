@@ -9,6 +9,8 @@
 !*.bib
 !*.py
 !.gitignore
+# ...plus the top-level project README:
+!/README.md
 # ...plus the manuscript figures (they accompany the LaTeX):
 !paper/figures/*.pdf
 !paper/figures/*.png
