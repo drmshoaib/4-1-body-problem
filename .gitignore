@@ -14,9 +14,13 @@
 # ...plus the manuscript figures (they accompany the LaTeX):
 !paper/figures/*.pdf
 !paper/figures/*.png
-# ...plus the compiled manuscript and supplement PDFs:
+# ...plus the compiled manuscript PDF:
 !paper/main.pdf
-!paper/supplement.pdf
+# ...plus the verified result CSVs (this repository is the reproducibility archive):
+!results/*.csv
+# The stale supplementary document is dropped: the repository + archived release
+# replaces it, so supplement.tex/pdf are not part of the published record.
+paper/supplement.tex
 
-# (Everything else stays local: results CSVs, docs, working notes and PDFs,
-#  build intermediates, and caches.)
+# (Everything else stays local: docs, working notes and PDFs, build
+#  intermediates, and caches.)

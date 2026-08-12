@@ -1,10 +1,17 @@
-"""Search for a secondary (subharmonic) periodic family at the only low-order
-multiplier resonance actually crossed by a primary family: family 2 crosses
-nu=0 (1:4 resonance, multiplier through +/- i).
+"""Test for a secondary (subharmonic) periodic family near the primary family
+whose nontrivial Floquet multiplier lies closest to a low-order resonance.
+Among the computed families, family 2 has the multiplier nearest the 1:4 point
+(argument closest to +/- 90 deg, i.e. nu closest to 0), so it is the natural
+candidate. Note that no computed family actually crosses nu=0 over its
+continuation range (its multiplier argument stays near +/- 100 deg), so this is
+a negative check rather than a bifurcation continuation.
 
 A genuine period-4 family must (i) close with residual < 1e-10 at period ~4T,
 and (ii) be a genuine subharmonic, i.e. NOT return to the initial state at T,
 2T or 3T (which would mean it is just the primary orbit re-covered).
+
+The search finds no genuine subharmonic, consistent with the manuscript's
+negative multiplier-crossing result.
 
 Output: results/secondary_family_search.csv (attempts + verdicts).
 """
