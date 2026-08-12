@@ -443,6 +443,18 @@ multiplicity on the investigated parameter interval; it is not an analytic
 upper bound on the number of real equilibria of the general restricted
 five-body problem.
 
+This count is stable under refinement of the search. Repeating the multi-start
+search at the eleven-equilibrium configuration over grid densities $61^2$
+through $121^2$, random-start counts from $1000$ to $4000$, and three
+independent seeds returns eleven equilibria in every case. Reducing the
+converged-root rejection radius from $10^{-2}$ through $5\times10^{-3}$ to
+$10^{-3}$ reveals no additional roots, and the closest equilibrium to any
+primary at this configuration lies at distance $0.33$, so no genuine
+near-primary equilibrium is discarded by the exclusion guard. The same
+invariance holds for the four reference configurations, whose nearest
+equilibrium-to-primary distance is $0.13$. These convergence and
+exclusion-radius data are provided in the reproducibility archive.
+
 Figure~\ref{fig:case2_cascade} shows representative equilibrium geometries
 through the complete Case-2 sequence
 \[

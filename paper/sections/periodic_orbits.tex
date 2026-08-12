@@ -401,14 +401,17 @@ A\simeq0.28.
 The index subsequently moves away from $-2$ rather than crossing it
 (Figure~\ref{fig:period_doubling_scan}).
 
-The approach was re-examined with an ultra-fine amplitude sweep (amplitude
-step $8\times10^{-4}$) around the minimum, which returns the same closest
-approach, $\min_a|\nu+2|\simeq1.0\times10^{-7}$ at $\nu\simeq-1.99999990$,
-with the index turning back rather than crossing. All orbits are integrated
-at $\mathrm{rtol}=\mathrm{atol}=10^{-12}$
-(Section~\ref{subsec:periodic_continuation}), and the monodromy diagnostics
-of Section~\ref{subsec:floquet} confirm that the multiplier computation
-remains reliable at this near-degenerate point. We therefore find no
+The approach was re-examined with an ultra-fine amplitude sweep of $51$
+samples spanning amplitudes $0.258$ to $0.298$ (step $8\times10^{-4}$) around
+the minimum, which returns the same closest approach,
+$\min_a|\nu+2|\simeq1.0\times10^{-7}$ at $\nu\simeq-1.99999990$, with the index
+turning back rather than crossing. All orbits are integrated at
+$\mathrm{rtol}=\mathrm{atol}=10^{-12}$
+(Section~\ref{subsec:periodic_continuation}). Recomputing the entire sweep at
+$\mathrm{rtol}=\mathrm{atol}=10^{-14}$, the double-precision limit, reproduces
+the same minimum to within $2\times10^{-16}$ and the same turn-back, so the
+near-degeneracy is not an integration artefact; the monodromy diagnostics of
+Section~\ref{subsec:floquet} likewise remain reliable at this point. We therefore find no
 period-doubling crossing over the computed continuation interval. In
 particular, the calculation provides no evidence for a local period-doubled
 branch bifurcating from family~10 within that interval.

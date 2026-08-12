@@ -99,8 +99,10 @@ eleven-equilibrium regime are described in Section~\ref{subsubsec:eleven}.
 
 Because the analytic derivatives enter both the equilibrium solver and the
 subsequent bifurcation and stability calculations, they are independently
-validated against central finite differences at 25 test points chosen away
-from the primary singularities. The analytic gradient
+validated against central finite differences (step $h=10^{-6}$) at 25
+fixed-seed points drawn uniformly in $[-4,4]^2$, each farther than $0.75$
+from every primary so that the finite differences are well conditioned. The
+analytic gradient
 \eqref{eq:potential_gradient} is compared with finite differences of
 $\Omega$, and $H_\Omega$ with finite differences of the analytic gradient.
 The maximum discrepancies are of order $10^{-9}$ for the gradient and
@@ -263,6 +265,21 @@ root search and therefore does not depend on branch association. The same
 adaptive branch assignment is used for all branch-dependent diagnostics,
 figures, and periodic-orbit parent selections reported below.
 
+The constants in \eqref{eq:branch_match_tolerance}--\eqref{eq:branch_reliability}
+are implementation choices, and the branch-exchange identification reported in
+Section~\ref{sec:results} does not depend on them. Re-tracking the Case-2 arc
+with tighter $(0.12,\,2\delta;\ 0.15,\,1.5\delta)$ and looser
+$(0.30,\,4\delta;\ 0.40,\,3\delta)$ variants leaves the branch partition through
+the eleven-equilibrium interval, and through the entire creation-to-destruction
+window of the pair $B_a$, unchanged. In that window the predictor-to-match
+distances stay well within the acceptance tolerance
+\eqref{eq:branch_match_tolerance} (ratio $\lesssim0.25$ in the eleven-equilibrium
+interval, $\lesssim0.8$ across the full seven-fold sequence), and no match in the
+fold sequence is flagged unreliable at the default thresholds; the unreliable
+flags arise only near the mass-vanishing arc ends. The branch-exchange claim is
+therefore insensitive to the threshold choice. These sensitivity data are
+provided in the reproducibility archive.
+
 
 \subsection{Fold localization and verification}
 \label{subsec:foldmethods}
@@ -293,7 +310,14 @@ system
 Equation~\eqref{eq:fold_augmented_system} consists of four equations in the
 four unknowns $(x,y,c_1,c_2)$, with $(a,b)$ fixed. It is solved by damped
 Newton iteration using a finite-difference Jacobian with step $10^{-6}$,
-and an augmented-system residual not exceeding $10^{-11}$ is required.
+and an augmented-system residual not exceeding $10^{-11}$ is required. The
+finite-difference Jacobian here differentiates the coupled residual
+$(\Omega_x,\Omega_y,\det H_\Omega,\psi)$ with respect to both the equilibrium
+coordinates and the central-configuration variables; this outer solve is
+distinct from the periodic-orbit correction of
+Section~\ref{subsec:periodic_shooting}, which uses the exact analytic
+variational matrix \eqref{eq:variational_matrix} integrated as the
+state-transition matrix.
 Thus the critical equilibrium is simultaneously placed on the
 central-configuration manifold and at a degeneracy of the equilibrium map.
 
