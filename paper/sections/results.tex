@@ -446,14 +446,28 @@ five-body problem.
 This count is stable under refinement of the search. Repeating the multi-start
 search at the eleven-equilibrium configuration over grid densities $61^2$
 through $121^2$, random-start counts from $1000$ to $4000$, and three
-independent seeds returns eleven equilibria in every case. Reducing the
-converged-root rejection radius from $10^{-2}$ through $5\times10^{-3}$ to
-$10^{-3}$ reveals no additional roots, and the closest equilibrium to any
-primary at this configuration lies at distance $0.33$, so no genuine
-near-primary equilibrium is discarded by the exclusion guard. The same
-invariance holds for the four reference configurations, whose nearest
-equilibrium-to-primary distance is $0.13$. These convergence and
-exclusion-radius data are provided in the reproducibility archive.
+independent seeds returns eleven equilibria in every case. No additional
+equilibria were detected when the converged-root exclusion radius was reduced
+from $10^{-2}$ through $5\times10^{-3}$ to $10^{-3}$; the closest equilibrium
+to any primary at this configuration lies at distance $0.33$, and $0.13$ for
+the four reference configurations. These convergence and exclusion-radius data
+are provided in the reproducibility archive.
+
+The equilibrium equations also provide a finite analytic search-radius bound.
+Writing $R_p=\max_i|\mathbf r_i|$ and $M=\sum_i m_i$, at an equilibrium
+$\mathbf r=\sum_i m_i(\mathbf r-\mathbf r_i)/|\mathbf r-\mathbf r_i|^3$, so for
+$r>R_p$, using $|\mathbf r-\mathbf r_i|\ge r-R_p$,
+\begin{equation}
+r\le\frac{M}{(r-R_p)^2},
+\qquad\text{i.e.}\qquad
+r\,(r-R_p)^2\le M.
+\label{eq:outer_radius_bound}
+\end{equation}
+The largest positive root of $r(r-R_p)^2=M$ over all analysed continuation
+samples is $6.97$ (attained on the Case-1 arc, where $M$ is largest). The
+search domain $[-8,8]^2$ contains the disk of radius $8$, so the bounding disk
+lies strictly within the searched region and no equilibrium can exist at larger
+radius. This bounds the location, not the number, of equilibria.
 
 Figure~\ref{fig:case2_cascade} shows representative equilibrium geometries
 through the complete Case-2 sequence
@@ -553,7 +567,15 @@ consistent with the Lyapunov--Schmidt prediction
 derived in Section~\ref{subsec:foldmethods}. Since the normalized coordinate $s$ is a smooth
 monotone rescaling of $\ell$ on each admissible arc, the same local exponent
 is obtained when the distance to the critical point is expressed using
-$|s-s_c|$.
+$|s-s_c|$. These exponent estimates are robust to the fitting window:
+refitting each fold over narrower and wider innermost ranges of
+$|\ell-\ell_c|$ keeps every exponent within about $0.05$ of $\tfrac12$ in the
+innermost (asymptotic) window, the small departures seen over wider ranges
+being a higher-order effect that contracts as the window approaches the fold.
+The per-fold fit ranges, point counts, exponents, and log-space residuals are
+recorded in the reproducibility archive. The exponent is corroboration only:
+each fold is independently classified as a generic saddle node by the
+augmented degeneracy system and the fold nondegeneracy conditions.
 
 The agreement of four independent diagnostics (the observed
 $\Delta N_{\rm eq}=\pm2$ count changes, convergence of the augmented

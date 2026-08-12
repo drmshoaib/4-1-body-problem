@@ -407,11 +407,13 @@ the minimum, which returns the same closest approach,
 $\min_a|\nu+2|\simeq1.0\times10^{-7}$ at $\nu\simeq-1.99999990$, with the index
 turning back rather than crossing. All orbits are integrated at
 $\mathrm{rtol}=\mathrm{atol}=10^{-12}$
-(Section~\ref{subsec:periodic_continuation}). Recomputing the entire sweep at
-$\mathrm{rtol}=\mathrm{atol}=10^{-14}$, the double-precision limit, reproduces
-the same minimum to within $2\times10^{-16}$ and the same turn-back, so the
-near-degeneracy is not an integration artefact; the monodromy diagnostics of
-Section~\ref{subsec:floquet} likewise remain reliable at this point. We therefore find no
+(Section~\ref{subsec:periodic_continuation}). As a tolerance-convergence check
+the entire sweep was recomputed at a requested $\mathrm{rtol}=\mathrm{atol}=
+10^{-14}$, which the integrator clamps to approximately the double-precision
+limit; this reproduces the same minimum to within $2\times10^{-16}$ and the
+same turn-back, so the near-degeneracy is not an integration artefact. The
+monodromy diagnostics of Section~\ref{subsec:floquet} likewise remain reliable
+at this point. We therefore find no
 period-doubling crossing over the computed continuation interval. In
 particular, the calculation provides no evidence for a local period-doubled
 branch bifurcating from family~10 within that interval.

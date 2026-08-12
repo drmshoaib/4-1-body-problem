@@ -200,6 +200,24 @@ python paper/make_figures.py
 These write the PDF and PNG figures into `paper/figures/` and the LaTeX tables
 into `paper/tables/`.
 
+## Numerical-hardening checks
+
+These standalone scripts reproduce the robustness evidence cited in the
+manuscript; each reads the result CSVs above and writes its own CSV into
+`results/`.
+
+```bash
+python scripts/equilibrium_search_convergence.py   # count vs grid/random/seed/exclusion radius
+python scripts/equilibrium_outer_radius_bound.py   # analytic r(r-R_p)^2 <= M outer-radius bound
+python scripts/branch_tracking_sensitivity.py      # B_a/B_b exchange vs tracking thresholds
+python scripts/fold_scaling_fit_diagnostics.py     # fold exponent vs fitting window (innermost..full)
+python scripts/period_doubling_tolerance_check.py  # family-10 min|nu+2| at rtol 1e-12 vs 1e-14
+```
+
+Outputs: `equilibrium_search_convergence.csv`, `equilibrium_outer_radius_bound.csv`,
+`branch_tracking_sensitivity.csv`, `fold_scaling_fit_diagnostics.csv`,
+`period_doubling_tolerance.csv`.
+
 ## Building the paper
 
 ```bash
