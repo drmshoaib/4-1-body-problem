@@ -221,8 +221,9 @@ pinned software environment.
 
 This repository is the code/data reproducibility archive for the paper. At
 submission the exact repository state is tagged as a release (for example
-`v1.0-paper-submission`) and deposited in a permanent archive (Zenodo or
-equivalent) to mint a DOI. The paper's data-and-code-availability statement then
+`v1.0-paper-submission`) and deposited in a permanent archive (e.g. Zenodo,
+figshare, or ResearchGate) to mint a DOI. The paper's data-and-code-availability
+statement then
 cites the repository URL, the immutable commit/tag, and the archive DOI, so a
 reader obtains the exact code and numerical outputs behind every result.
 
