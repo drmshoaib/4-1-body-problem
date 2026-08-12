@@ -212,7 +212,7 @@ def potential_context_journal(g, P, P4, m, msz, xeq, yeq):
     with mpl.rc_context({"font.family": "serif", "mathtext.fontset": "cm",
                          "axes.edgecolor": "#333333", "axes.linewidth": 0.8,
                          "font.size": 10}):
-        fig, ax = plt.subplots(figsize=(6.6, 5.9))
+        fig, ax = plt.subplots(figsize=(7.0, 6.0), constrained_layout=True)
         fig.patch.set_facecolor("white"); ax.set_facecolor("white")
 
         xlo, xhi, ylo, yhi = -3.2, 4.4, -3.2, 4.4
@@ -259,7 +259,6 @@ def potential_context_journal(g, P, P4, m, msz, xeq, yeq):
                Line2D([0], [0], color="#b0b0b0", lw=1, label=r"levels of $2\Omega$")]
         ax.legend(handles=leg, loc="lower left", frameon=True, framealpha=0.9,
                   facecolor="white", edgecolor="#999999", fontsize=8.5)
-        fig.subplots_adjust(left=0.10, right=0.99, top=0.98, bottom=0.10)
         for ext in ("pdf", "png"):
             p = os.path.join(FIGDIR, f"periodic_orbit_potential.{ext}")
             fig.savefig(p, dpi=(220 if ext == "png" else None))
