@@ -35,6 +35,7 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 from matplotlib.lines import Line2D
+from matplotlib import patheffects as pe
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(ROOT, "src"))
@@ -201,6 +202,71 @@ def potential_context(g, P, P4, m, msz, xeq, yeq):
     plt.close(fig)
 
 
+def potential_context_journal(g, P, P4, m, msz, xeq, yeq):
+    """Light-theme, print-ready version for the manuscript (periodic_orbit_potential).
+
+    Colour map cividis (low potential dark, high potential bright) so the primary
+    singularities read as peaks and the libration minimum reads as a trough.
+    """
+    prim = ["#d1495b", "#2e6f95", "#2a9d8f", "#e09f3e"]
+    with mpl.rc_context({"font.family": "serif", "mathtext.fontset": "cm",
+                         "axes.edgecolor": "#333333", "axes.linewidth": 0.8,
+                         "font.size": 10}):
+        fig, ax = plt.subplots(figsize=(6.6, 5.9))
+        fig.patch.set_facecolor("white"); ax.set_facecolor("white")
+
+        xlo, xhi, ylo, yhi = -3.2, 4.4, -3.2, 4.4
+        gx = np.linspace(xlo, xhi, 700); gy = np.linspace(ylo, yhi, 700)
+        GX, GY = np.meshgrid(gx, gy)
+        acc = np.zeros_like(GX)
+        for i in range(4):
+            acc += m[i] / np.hypot(GX - P4[i, 0], GY - P4[i, 1])
+        twoOm = GX * GX + GY * GY + 2 * acc
+        vmin = float(twoOm.min()); vmax = float(np.percentile(twoOm, 80))
+        cf = ax.contourf(GX, GY, twoOm, levels=np.linspace(vmin, vmax, 32),
+                         cmap="cividis", extend="max", zorder=0)
+        ax.contour(GX, GY, twoOm, levels=[vmin + 0.5, vmin + 1.5, vmin + 3.5, vmin + 7.0],
+                   colors="#d8d8d8", linewidths=0.6, alpha=0.85, zorder=1)
+
+        amps = g["amplitude"].values
+        idx = sorted({int(np.abs(amps - t).argmin())
+                      for t in np.linspace(amps.min(), amps.max(), 6)})
+        reds = plt.get_cmap("autumn_r")
+        for j, kk in enumerate(idx):
+            rr = g.iloc[kk]
+            _, _, tj = integrate(np.array([rr["x0"], rr["y0"], rr["vx0"], rr["vy0"]], float),
+                                 float(rr["T"]), P, n_eval=600)
+            ax.plot(tj[:, 0], tj[:, 1], color=reds(0.25 + 0.65 * j / max(1, len(idx) - 1)),
+                    lw=1.6, zorder=5)
+
+        ax.plot(xeq, yeq, marker="*", ms=14, mfc="#ffffff", mec="#000000", mew=0.9, zorder=8)
+        for i in range(4):
+            ax.scatter(P4[i, 0], P4[i, 1], s=msz[i], marker=PMARK[i], c=prim[i],
+                       edgecolors="#000000", linewidths=0.9, zorder=9)
+            ax.annotate(f"$m_{i}$", (P4[i, 0], P4[i, 1]), xytext=(8, -2),
+                        textcoords="offset points", color="#000000", fontsize=9, zorder=10,
+                        path_effects=[pe.withStroke(linewidth=1.8, foreground="#ffffff")])
+        ax.set_xlim(xlo, xhi); ax.set_ylim(ylo, yhi); ax.set_aspect("equal")
+        ax.tick_params(colors="#333333", labelsize=9)
+        ax.set_xlabel("$x$", fontsize=11); ax.set_ylabel("$y$", fontsize=11)
+        cb = fig.colorbar(cf, ax=ax, fraction=0.046, pad=0.02)
+        cb.set_label(r"effective potential $2\Omega$", fontsize=10)
+        cb.ax.tick_params(labelsize=8)
+
+        leg = [Line2D([0], [0], marker="*", color="none", mfc="#fff", mec="#000",
+                      ms=11, label="libration point"),
+               Line2D([0], [0], color=reds(0.5), lw=2, label="periodic-orbit family"),
+               Line2D([0], [0], color="#b0b0b0", lw=1, label=r"levels of $2\Omega$")]
+        ax.legend(handles=leg, loc="lower left", frameon=True, framealpha=0.9,
+                  facecolor="white", edgecolor="#999999", fontsize=8.5)
+        fig.subplots_adjust(left=0.10, right=0.99, top=0.98, bottom=0.10)
+        for ext in ("pdf", "png"):
+            p = os.path.join(FIGDIR, f"periodic_orbit_potential.{ext}")
+            fig.savefig(p, dpi=(220 if ext == "png" else None))
+            print("wrote", p)
+        plt.close(fig)
+
+
 def main():
     po = pd.read_csv(os.path.join(RESULTS, "periodic_orbits.csv"))
     g = po[po.family_id == FID].sort_values("amplitude").reset_index(drop=True)
@@ -214,6 +280,7 @@ def main():
     os.makedirs(FIGDIR, exist_ok=True)
     rotating_vs_inertial(g, P, P4, m, msz, xeq, yeq)
     potential_context(g, P, P4, m, msz, xeq, yeq)
+    potential_context_journal(g, P, P4, m, msz, xeq, yeq)
 
 
 if __name__ == "__main__":
